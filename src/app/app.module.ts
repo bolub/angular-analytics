@@ -12,13 +12,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { CustomDatePickerComponent } from './components/custom-date-picker/custom-date-picker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SettingsComponent,
+    AppshellComponent,
     ViewModeComponent,
-    AppshellComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +29,10 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    CustomDatePickerComponent,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

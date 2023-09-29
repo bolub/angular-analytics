@@ -1,0 +1,35 @@
+<nav class="bg-green-600 h-20 w-full px-12 flex items-center">
+  <div class="custom-container flex items-center">
+    <span class="text-white uppercase text-sm font-semibold">
+      Angular Analytics
+    </span>
+
+    <ul class="flex mx-auto gap-5">
+      <li>
+        <a
+          class="text-sm p-2 rounded-md font-medium text-white"
+          [routerLink]="'/view-mode'"
+          routerLinkActive="active-link"
+        >
+          View mode
+        </a>
+      </li>
+
+      <li>
+        <a
+          class="text-sm p-2 rounded-md font-medium text-white"
+          [routerLink]="'/settings'"
+          routerLinkActive="active-link"
+        >
+          Settings
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main id="'main">
+  <div class="custom-container">
+    <ng-content></ng-content>
+  </div>
+</main>

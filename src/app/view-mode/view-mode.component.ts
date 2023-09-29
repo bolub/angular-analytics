@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
 
+type RangeType = { start?: Date | null; end?: Date | null };
+
 @Component({
   selector: 'app-view-mode',
   templateUrl: './view-mode.component.html',
-  styleUrls: ['./view-mode.component.css']
 })
 export class ViewModeComponent {
+  rangeValues!: RangeType;
 
+  handleDateChange(range: RangeType) {
+    this.rangeValues = range;
+  }
 }

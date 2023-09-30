@@ -20,27 +20,32 @@ export class ViewModeComponent implements OnInit {
 
   graphValues: GraphValue[] = [];
 
+  formatData(chartTypesList: ChartType[], graphValues: GraphValue[]) {
+    return chartTypesList.map((ctld) => {
+      return {
+        ...ctld,
+        data: graphValues,
+      };
+    });
+  }
+
+  dateToString(date?: Date | null) {
+    return date ? date.toISOString().slice(0, 10) : '';
+  }
+
   handleDateChange(range: RangeType) {
     this.rangeValues = range;
 
     const newGraphValues = [...this.graphValues].filter((gv) => {
       const itemDate = new Date(gv.date).toISOString().slice(0, 10);
 
-      return (
-        // @ts-ignore
-        itemDate >= range.start.toISOString().slice(0, 10) &&
-        // @ts-ignore
-        itemDate <= range.end.toISOString().slice(0, 10)
-      );
+      const startDate = this.dateToString(range?.start);
+      const endDate = this.dateToString(range.end);
+
+      return itemDate >= startDate && itemDate <= endDate;
     });
 
-    const combined = [...this.chartTypesList].map((chartTypesList) => {
-      return {
-        ...chartTypesList,
-        data: newGraphValues,
-      };
-    });
-
+    const combined = this.formatData([...this.chartTypesList], newGraphValues);
     this.chartTypesListWithData = combined;
   }
 
@@ -50,12 +55,10 @@ export class ViewModeComponent implements OnInit {
     this.chartTypesList = this.mockService.generateChartTypeData();
     this.graphValues = this.mockService.generateGraphData();
 
-    const combined = [...this.chartTypesList].map((chartTypesList) => {
-      return {
-        ...chartTypesList,
-        data: this.graphValues,
-      };
-    });
+    const combined = this.formatData(
+      [...this.chartTypesList],
+      this.graphValues
+    );
 
     this.chartTypesListWithData = combined;
     this.originalChartTypesListWithData = combined;

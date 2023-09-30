@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Graph } from './components/graph-display/graph-display.component';
 import { MockService } from '../services/mock.service';
+import { GraphContent } from '../settings/settings.component';
 
 type RangeType = { start?: Date | null; end?: Date | null };
 
@@ -14,23 +15,8 @@ export class ViewModeComponent implements OnInit {
     end: null,
   };
 
-  chartTypesList: Graph[] = [
-    {
-      type: 'bar',
-      color: 'red',
-      data: [],
-    },
-    {
-      type: 'pie',
-      color: 'blue',
-      data: [],
-    },
-    {
-      type: 'line',
-      color: 'yellow',
-      data: [],
-    },
-  ];
+  graphContent: GraphContent[] = [];
+  chartTypesList: Graph[] = [];
 
   graphValues: { value: number; date: Date }[] = [];
 
@@ -41,11 +27,12 @@ export class ViewModeComponent implements OnInit {
   constructor(private mockService: MockService) {}
 
   ngOnInit(): void {
+    this.graphContent = this.mockService.generateChartTypeData();
     this.graphValues = this.mockService.generateGraphData(20);
 
-    this.chartTypesList = [...this.chartTypesList].map((chartTypeData) => {
+    this.chartTypesList = [...this.graphContent].map((graphContent) => {
       return {
-        ...chartTypeData,
+        ...graphContent,
         data: this.graphValues,
       };
     });

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MockService } from '../services/mock.service';
 
-type GraphContent = {
+export type GraphContent = {
   title: string;
   type: string;
   color: string;
@@ -10,31 +11,12 @@ type GraphContent = {
   selector: 'app-settings',
   templateUrl: './settings.component.html',
 })
-export class SettingsComponent {
-  dummyData: GraphContent[] = [
-    {
-      title: 'Chart 1',
-      type: 'chart',
-      color: 'red',
-    },
-    {
-      title: 'Chart 2',
-      type: 'bar',
-      color: 'green',
-    },
-    {
-      title: 'Chart 2',
-      type: 'line',
-      color: 'yellow',
-    },
-  ];
+export class SettingsComponent implements OnInit {
+  dummyData: GraphContent[] = [];
 
-  // constructor(public dialog: MatDialog) {}
+  constructor(private mockService: MockService) {}
 
-  openDialog() {
-    // const dialogRef = this.dialog.open(DialogContentExampleDialog);
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
+  ngOnInit(): void {
+    this.dummyData = this.mockService.generateChartTypeData();
   }
 }

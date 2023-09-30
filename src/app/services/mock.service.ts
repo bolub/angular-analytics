@@ -24,4 +24,24 @@ export class MockService {
 
     return graphValues;
   }
+
+  generateChartTypeData() {
+    return [
+      {
+        title: 'Chart 1',
+        type: 'chart',
+        color: 'red',
+      },
+      {
+        title: 'Chart 2',
+        type: 'bar',
+        color: 'green',
+      },
+      {
+        title: 'Chart 3',
+        type: 'line',
+        color: 'yellow',
+      },
+    ];
+  }
 }

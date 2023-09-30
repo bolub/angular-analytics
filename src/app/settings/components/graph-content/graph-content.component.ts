@@ -1,10 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-type GraphContent = {
-  title: string;
-  type: string;
-  color: string;
-};
+import { GraphContent } from '../../settings.component';
 
 @Component({
   selector: 'app-graph-content',

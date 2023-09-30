@@ -1,18 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MockService } from '../services/mock.service';
-
-export type GraphContent = {
-  title: string;
-  type: string;
-  color: string;
-};
+import { ChartType, MockService } from '../services/mock.service';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
 })
 export class SettingsComponent implements OnInit {
-  dummyData: GraphContent[] = [];
+  dummyData: ChartType[] = [];
 
   constructor(private mockService: MockService) {}
 

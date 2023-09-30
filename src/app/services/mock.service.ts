@@ -1,5 +1,17 @@
 import { Injectable } from '@angular/core';
 
+export type ChartType = {
+  title: string;
+  type: string;
+  color: string;
+};
+
+export type GraphValue = {
+  label: string;
+  value: number;
+  date: Date;
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -7,7 +19,7 @@ export class MockService {
   constructor() {}
 
   generateGraphData() {
-    let graphValues = [];
+    let graphValues: GraphValue[] = [];
 
     const missionData = [
       { label: 'Mars Rover Landing', value: 1, date: '2021-02-18' },

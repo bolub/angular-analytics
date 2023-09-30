@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Graph } from './components/graph-display/graph-display.component';
-import { MockService } from '../services/mock.service';
-import { GraphContent } from '../settings/settings.component';
+import { ChartType, GraphValue, MockService } from '../services/mock.service';
 
 type RangeType = { start?: Date | null; end?: Date | null };
 
@@ -15,11 +14,11 @@ export class ViewModeComponent implements OnInit {
     end: null,
   };
 
-  graphContent: GraphContent[] = [];
-  chartTypesList: Graph[] = [];
-  originalChartTypesList: Graph[] = [];
+  chartTypesList: ChartType[] = [];
+  chartTypesListWithData: Graph[] = [];
+  originalChartTypesListWithData: Graph[] = [];
 
-  graphValues: { value: number; date: Date; label: string }[] = [];
+  graphValues: GraphValue[] = [];
 
   handleDateChange(range: RangeType) {
     this.rangeValues = range;
@@ -35,30 +34,30 @@ export class ViewModeComponent implements OnInit {
       );
     });
 
-    const combined = [...this.graphContent].map((graphContent) => {
+    const combined = [...this.chartTypesList].map((chartTypesList) => {
       return {
-        ...graphContent,
+        ...chartTypesList,
         data: newGraphValues,
       };
     });
 
-    this.chartTypesList = combined;
+    this.chartTypesListWithData = combined;
   }
 
   constructor(private mockService: MockService) {}
 
   ngOnInit(): void {
-    this.graphContent = this.mockService.generateChartTypeData();
+    this.chartTypesList = this.mockService.generateChartTypeData();
     this.graphValues = this.mockService.generateGraphData();
 
-    const combined = [...this.graphContent].map((graphContent) => {
+    const combined = [...this.chartTypesList].map((chartTypesList) => {
       return {
-        ...graphContent,
+        ...chartTypesList,
         data: this.graphValues,
       };
     });
 
-    this.chartTypesList = combined;
-    this.originalChartTypesList = combined;
+    this.chartTypesListWithData = combined;
+    this.originalChartTypesListWithData = combined;
   }
 }

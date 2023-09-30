@@ -7,7 +7,10 @@ type RangeType = { start?: Date | null; end?: Date | null };
   templateUrl: './view-mode.component.html',
 })
 export class ViewModeComponent {
-  rangeValues!: RangeType;
+  rangeValues: RangeType = {
+    start: null,
+    end: null,
+  };
 
   handleDateChange(range: RangeType) {
     this.rangeValues = range;

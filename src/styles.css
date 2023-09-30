@@ -12,9 +12,13 @@ body { margin: 0; font-family: Inter, "Helvetica Neue", sans-serif; }
 }
 
 .custom-container{
-    @apply container mx-auto
+    @apply container mx-auto px-10 md:px-0
 }
 
 button{
     @apply text-sm
+}
+
+.mat-mdc-dialog-container .mdc-dialog__title {
+    @apply font-semibold text-2xl tracking-normal !important
 }

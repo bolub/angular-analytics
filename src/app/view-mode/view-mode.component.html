@@ -9,8 +9,24 @@
   ></app-custom-date-picker>
 </div>
 
-<p class="mt-2">
+<!-- <p class="mt-2">
   {{ rangeValues | json }}
+</p> -->
+
+<p
+  [ngClass]="rangeValues.start ? 'block' : 'hidden'"
+  class="mt-2 text-sm bg-gray-200 w-fit py-1 px-4 rounded-full"
+>
+  Date range:
+  <span class="font-semibold">
+    {{ rangeValues.start | date }}
+  </span>
+
+  to
+
+  <span class="font-semibold">
+    {{ rangeValues.end | date }}
+  </span>
 </p>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">

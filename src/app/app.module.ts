@@ -18,7 +18,6 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { GraphContentComponent } from './settings/components/graph-content/graph-content.component';
 import { NewChartDialogComponent } from './settings/components/new-chart/new-chart-dialog/new-chart-dialog.component';
 import { NewChartComponent } from './settings/components/new-chart/new-chart.component';
-import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { HighchartsChartModule } from 'highcharts-angular';
     SettingsComponent,
     AppshellComponent,
     ViewModeComponent,
-    GraphDisplayComponent,
     PageHeaderComponent,
     GraphContentComponent,
   ],
@@ -42,7 +40,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     CustomDatePickerComponent,
     NewChartDialogComponent,
     NewChartComponent,
-    HighchartsChartModule,
+    GraphDisplayComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { ChartType, GraphValue } from 'src/app/services/mock.service';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 export type Graph = ChartType & {
   data: GraphValue[];
@@ -9,6 +10,8 @@ export type Graph = ChartType & {
 @Component({
   selector: 'app-graph-display',
   templateUrl: './graph-display.component.html',
+  standalone: true,
+  imports: [HighchartsChartModule],
 })
 
 //

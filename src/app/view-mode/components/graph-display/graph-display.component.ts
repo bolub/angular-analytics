@@ -1,9 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import * as Highcharts from 'highcharts';
 
 export type Graph = {
+  title: string;
   type: string;
   color: string;
   data: {
+    label: string;
     value: number;
     date: Date;
   }[];
@@ -15,6 +18,41 @@ export type Graph = {
 })
 
 //
-export class GraphDisplayComponent {
+export class GraphDisplayComponent implements OnInit {
   @Input({ required: true }) data!: Graph;
+
+  Highcharts: typeof Highcharts = Highcharts;
+  chartConstructor: string = 'chart';
+  chartOptions: Highcharts.Options = {};
+  chartCallback: Highcharts.ChartCallbackFunction = function (chart) {}; // optional function, defaults to null
+  updateFlag: boolean = false;
+  oneToOneFlag: boolean = true;
+  runOutsideAngular: boolean = false;
+
+  formatData() {
+    return this.data.data.map((d) => {
+      return {
+        x: d.date,
+        y: d.value,
+        name: d.label,
+      };
+    });
+  }
+
+  ngOnInit(): void {
+    this.chartOptions = {
+      title: {
+        text: this.data.title,
+      },
+      series: [
+        {
+          data: this.formatData(),
+          type: this.data.type as any,
+        },
+      ],
+      xAxis: {
+        type: 'datetime',
+      },
+    };
+  }
 }

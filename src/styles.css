@@ -14,3 +14,7 @@ body { margin: 0; font-family: Inter, "Helvetica Neue", sans-serif; }
 .custom-container{
     @apply container mx-auto
 }
+
+button{
+    @apply text-sm
+}

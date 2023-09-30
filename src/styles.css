@@ -2,3 +2,23 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Inter, "Helvetica Neue", sans-serif; }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active-link{
+    @apply bg-white font-semibold text-black
+}
+
+.custom-container{
+    @apply container mx-auto px-10 md:px-0
+}
+
+button{
+    @apply text-sm
+}
+
+.mat-mdc-dialog-container .mdc-dialog__title {
+    @apply font-semibold text-2xl tracking-normal !important
+}

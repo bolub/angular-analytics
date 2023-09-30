@@ -13,6 +13,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { CustomDatePickerComponent } from './components/custom-date-picker/custom-date-picker.component';
+import { GraphDisplayComponent } from './view-mode/graph-display/graph-display.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CustomDatePickerComponent } from './components/custom-date-picker/custo
     SettingsComponent,
     AppshellComponent,
     ViewModeComponent,
+    GraphDisplayComponent,
   ],
   imports: [
     BrowserModule,

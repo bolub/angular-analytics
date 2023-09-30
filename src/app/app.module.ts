@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { CustomDatePickerComponent } from './components/custom-date-picker/custom-date-picker.component';
 import { GraphDisplayComponent } from './view-mode/graph-display/graph-display.component';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { GraphContentComponent } from './settings/graph-content/graph-content.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { GraphDisplayComponent } from './view-mode/graph-display/graph-display.c
     AppshellComponent,
     ViewModeComponent,
     GraphDisplayComponent,
+    PageHeaderComponent,
+    GraphContentComponent,
   ],
   imports: [
     BrowserModule,

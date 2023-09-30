@@ -17,24 +17,48 @@ export class ViewModeComponent implements OnInit {
 
   graphContent: GraphContent[] = [];
   chartTypesList: Graph[] = [];
+  originalChartTypesList: Graph[] = [];
 
-  graphValues: { value: number; date: Date }[] = [];
+  graphValues: { value: number; date: Date; label: string }[] = [];
 
   handleDateChange(range: RangeType) {
     this.rangeValues = range;
+
+    const newGraphValues = [...this.graphValues].filter((gv) => {
+      const itemDate = new Date(gv.date).toISOString().slice(0, 10);
+
+      return (
+        // @ts-ignore
+        itemDate >= range.start.toISOString().slice(0, 10) &&
+        // @ts-ignore
+        itemDate <= range.end.toISOString().slice(0, 10)
+      );
+    });
+
+    const combined = [...this.graphContent].map((graphContent) => {
+      return {
+        ...graphContent,
+        data: newGraphValues,
+      };
+    });
+
+    this.chartTypesList = combined;
   }
 
   constructor(private mockService: MockService) {}
 
   ngOnInit(): void {
     this.graphContent = this.mockService.generateChartTypeData();
-    this.graphValues = this.mockService.generateGraphData(20);
+    this.graphValues = this.mockService.generateGraphData();
 
-    this.chartTypesList = [...this.graphContent].map((graphContent) => {
+    const combined = [...this.graphContent].map((graphContent) => {
       return {
         ...graphContent,
         data: this.graphValues,
       };
     });
+
+    this.chartTypesList = combined;
+    this.originalChartTypesList = combined;
   }
 }

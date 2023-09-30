@@ -15,4 +15,34 @@ export class ViewModeComponent {
   handleDateChange(range: RangeType) {
     this.rangeValues = range;
   }
+
+  dummyData = [
+    {
+      type: 'bar',
+      data: [
+        {
+          value: 10,
+          date: new Date(),
+        },
+      ],
+    },
+    {
+      type: 'pie',
+      data: [
+        {
+          value: 10,
+          date: new Date(),
+        },
+      ],
+    },
+    {
+      type: 'line',
+      data: [
+        {
+          value: 10,
+          date: new Date(),
+        },
+      ],
+    },
+  ];
 }

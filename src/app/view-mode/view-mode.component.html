@@ -1,7 +1,7 @@
-<h1 class="text-3xl font-bold">Analytics</h1>
+<app-page-header title="Analytics" />
 
 <!-- date range picker -->
-<div class="flex gap-2 mt-10">
+<div class="flex gap-2">
   <span class="mt-5">Filter by:</span>
 
   <app-custom-date-picker
@@ -30,8 +30,5 @@
 </p>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
-  <div class="border p-20">Graph 1</div>
-  <div class="border p-20">Graph 2</div>
-  <div class="border p-20">Graph 3</div>
-  <div class="border p-20">Graph 4</div>
+  <app-graph-display *ngFor="let chart of dummyData" [data]="chart" />
 </div>

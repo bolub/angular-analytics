@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>New chart</h2>
+
+<mat-dialog-content class="mat-typography md:w-[450px]">
+  <form class="flex flex-col gap-4">
+    <mat-form-field class="w-full">
+      <mat-label>Chart title</mat-label>
+      <input matInput />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Chart type</mat-label>
+      <mat-select>
+        <mat-option
+          *ngFor="let chartType of chartTypes"
+          [value]="chartType.value"
+        >
+          {{ chartType.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Chart color</mat-label>
+      <input type="color" matInput />
+      <mat-hint align="end" class="text-sm"> Click to select a color </mat-hint>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+  >
+    Add chart
+  </button>
+</mat-dialog-actions>

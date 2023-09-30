@@ -12,6 +12,12 @@ const routes: Routes = [
     path: 'settings',
     component: SettingsComponent,
   },
+
+  {
+    path: '',
+    redirectTo: 'view-mode',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

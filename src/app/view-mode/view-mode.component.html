@@ -30,5 +30,8 @@
 </p>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
-  <app-graph-display *ngFor="let chart of dummyData" [data]="chart" />
+  <app-graph-display
+    *ngFor="let chartTypeListData of chartTypesList"
+    [data]="chartTypeListData"
+  />
 </div>

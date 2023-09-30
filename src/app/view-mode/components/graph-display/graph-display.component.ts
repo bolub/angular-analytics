@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 
-type Graph = {
+export type Graph = {
   type: string;
+  color: string;
   data: {
     value: number;
     date: Date;

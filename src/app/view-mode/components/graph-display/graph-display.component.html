@@ -1,3 +1,12 @@
-<div class="border p-20">
-  {{ data.type }}
+<div class="border p-5 md:p-5">
+  <highcharts-chart
+    [Highcharts]="Highcharts"
+    [constructorType]="chartConstructor"
+    [options]="chartOptions"
+    [callbackFunction]="chartCallback"
+    [(update)]="updateFlag"
+    [oneToOne]="oneToOneFlag"
+    [runOutsideAngular]="runOutsideAngular"
+    style="width: 100%; height: 500px; display: block"
+  ></highcharts-chart>
 </div>

@@ -11,6 +11,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 type DateChangeEvent = {
   start?: Date | null;
@@ -28,6 +29,7 @@ type DateChangeEvent = {
     FormsModule,
     ReactiveFormsModule,
     JsonPipe,
+    MatButtonModule,
   ],
 })
 export class CustomDatePickerComponent {

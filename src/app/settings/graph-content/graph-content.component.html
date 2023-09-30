@@ -1,0 +1,33 @@
+<div class="border rounded-lg px-8 pt-8 pb-12">
+  <h2 class="font-semibold text-xl">{{ data.title }}</h2>
+  <p class="mt-5">Type: {{ data.type }}</p>
+
+  <!-- color chosen -->
+  <div class="flex gap-3 items-center mt-4">
+    <div
+      class="h-5 w-5 ring-2 ring-offset-1 ring-black"
+      [ngStyle]="{ 'background-color': data.color }"
+    ></div>
+
+    <span class="text-sm font-medium uppercase">{{ data.color }}</span>
+  </div>
+
+  <!-- actions -->
+  <div class="flex mt-10 gap-6">
+    <button
+      mat-mini-fab
+      color="primary"
+      aria-label="Example icon button with a delete icon"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <button
+      mat-mini-fab
+      color="warn"
+      aria-label="Example icon button with a delete icon"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

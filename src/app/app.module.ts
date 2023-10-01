@@ -18,6 +18,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { GraphContentComponent } from './settings/components/graph-content/graph-content.component';
 import { NewChartDialogComponent } from './settings/components/new-chart/new-chart-dialog/new-chart-dialog.component';
 import { NewChartComponent } from './settings/components/new-chart/new-chart.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NewChartComponent } from './settings/components/new-chart/new-chart.com
     NewChartDialogComponent,
     NewChartComponent,
     GraphDisplayComponent,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

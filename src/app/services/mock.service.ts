@@ -16,8 +16,6 @@ export type GraphValue = {
   providedIn: 'root',
 })
 export class MockService {
-  constructor() {}
-
   generateGraphData() {
     let graphValues: GraphValue[] = [];
 

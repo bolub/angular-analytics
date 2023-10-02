@@ -1,14 +1,19 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ChartType } from './mock.service';
-import { shareReplay } from 'rxjs';
+import { ChartType, MockService } from './mock.service';
+import { Observable, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
+
+export type ChartTypeFull = {
+  $id: string;
+  $createdAt: Date;
+} & ChartType;
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChartTypesService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private mockService: MockService) {}
 
   httpUrl = environment.httpUrl;
   httpOptions = {
@@ -19,14 +24,27 @@ export class ChartTypesService {
     }),
   };
 
-  getChartTypes() {
-    return this.http.get<{ documents: ChartType[] }>(
+  getChartTypes$ = this.http
+    .get<{ documents: ChartTypeFull[] }>(this.httpUrl, this.httpOptions)
+    .pipe(shareReplay(1));
+
+  createChartType(ct: ChartType): Observable<any> {
+    return this.http.post<ChartType>(
       this.httpUrl,
+      {
+        documentId: this.mockService.generateUniqueId(),
+        data: {
+          ...ct,
+        },
+      },
       this.httpOptions
     );
   }
 
-  getChartTypes$ = this.http
-    .get<{ documents: ChartType[] }>(this.httpUrl, this.httpOptions)
-    .pipe(shareReplay(1));
+  deleteChartType(documentId: string) {
+    return this.http.delete<ChartType>(
+      `${this.httpUrl}/${documentId}`,
+      this.httpOptions
+    );
+  }
 }

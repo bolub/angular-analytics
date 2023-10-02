@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Graph } from './components/graph-display/graph-display.component';
 import { GraphValue, MockService } from '../services/mock.service';
 import { ChartTypesService } from '../services/chart-types.service';
 import { map } from 'rxjs';

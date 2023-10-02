@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ChartType } from '../services/mock.service';
-import { ChartTypesService } from '../services/chart-types.service';
+import {
+  ChartTypeFull,
+  ChartTypesService,
+} from '../services/chart-types.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -8,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './settings.component.html',
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-  chartTypesList: ChartType[] = [];
+  chartTypesList: ChartTypeFull[] = [];
   subscription!: Subscription;
 
   constructor(private chartTypesService: ChartTypesService) {}

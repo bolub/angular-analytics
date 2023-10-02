@@ -4,12 +4,12 @@
   <form class="flex flex-col gap-4">
     <mat-form-field class="w-full">
       <mat-label>Chart title</mat-label>
-      <input matInput />
+      <input [(ngModel)]="title" name="title" matInput />
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Chart type</mat-label>
-      <mat-select>
+      <mat-select [(ngModel)]="type" name="type">
         <mat-option
           *ngFor="let chartType of chartTypes"
           [value]="chartType.value"
@@ -21,7 +21,7 @@
 
     <mat-form-field class="w-full">
       <mat-label>Chart color</mat-label>
-      <input type="color" matInput />
+      <input [(ngModel)]="color" type="color" name="'color" matInput />
       <mat-hint align="end" class="text-sm"> Click to select a color </mat-hint>
     </mat-form-field>
   </form>
@@ -32,8 +32,9 @@
   <button
     mat-flat-button
     color="primary"
-    [mat-dialog-close]="true"
     cdkFocusInitial
+    (click)="onAddChart()"
+    [disabled]="!title || !color || !type"
   >
     Add chart
   </button>

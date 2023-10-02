@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 export type ChartType = {
   title: string;
-  type: string;
+  type: 'bar' | 'pie' | 'line' | 'spline' | 'area';
   color: string;
 };
 
@@ -76,5 +76,21 @@ export class MockService {
         color: 'yellow',
       },
     ];
+  }
+
+  private idCounter: number = 0;
+  private idLength: number = 8;
+
+  generateUniqueId(): string {
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let id = '';
+
+    for (let i = 0; i < this.idLength; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      id += characters.charAt(randomIndex);
+    }
+
+    return id;
   }
 }

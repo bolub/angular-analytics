@@ -6,8 +6,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
+import { ChartType } from 'src/app/services/mock.service';
+import { ChartTypesService } from 'src/app/services/chart-types.service';
 
-interface ChartType {
+interface ChartTypeSelector {
   value: string;
   viewValue: string;
 }
@@ -27,9 +29,29 @@ interface ChartType {
   ],
 })
 export class NewChartDialogComponent {
-  chartTypes: ChartType[] = [
+  chartTypes: ChartTypeSelector[] = [
     { value: 'bar', viewValue: 'Bar' },
     { value: 'line', viewValue: 'Line' },
     { value: 'pie', viewValue: 'Pie' },
+    { value: 'area', viewValue: 'Area' },
+    { value: 'spline', viewValue: 'Spline' },
   ];
+
+  title!: string;
+  color!: string;
+  type!: ChartType['type'];
+
+  constructor(private chartTypesService: ChartTypesService) {}
+
+  onAddChart() {
+    this.chartTypesService
+      .createChartType({
+        title: this.title,
+        color: this.color,
+        type: this.type,
+      })
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 }

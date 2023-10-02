@@ -19,6 +19,7 @@ import { GraphContentComponent } from './settings/components/graph-content/graph
 import { NewChartDialogComponent } from './settings/components/new-chart/new-chart-dialog/new-chart-dialog.component';
 import { NewChartComponent } from './settings/components/new-chart/new-chart.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     NewChartComponent,
     GraphDisplayComponent,
     HttpClientModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [],
   bootstrap: [AppComponent],

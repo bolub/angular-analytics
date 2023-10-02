@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import {
   ChartTypeFull,
   ChartTypesService,
-} from 'src/app/services/chart-types.service';
+} from 'src/app/core/services/chart-types.service';
 
 @Component({
   selector: 'app-graph-content',

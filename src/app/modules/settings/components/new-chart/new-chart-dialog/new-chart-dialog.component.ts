@@ -6,8 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
-import { ChartType } from 'src/app/services/mock.service';
-import { ChartTypesService } from 'src/app/services/chart-types.service';
+import { ChartType } from 'src/app/core/services/mock.service';
+import { ChartTypesService } from 'src/app/core/services/chart-types.service';
 
 interface ChartTypeSelector {
   value: string;

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   ChartTypeFull,
   ChartTypesService,
-} from '../services/chart-types.service';
+} from '../../core/services/chart-types.service';
 import { Subscription } from 'rxjs';
 
 @Component({

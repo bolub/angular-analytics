@@ -1,4 +1,4 @@
-import { ChartType, GraphValue } from '../services/mock.service';
+import { ChartType, GraphValue } from '../../core/services/mock.service';
 import { RangeType } from './view-mode.component';
 
 export function formatData(

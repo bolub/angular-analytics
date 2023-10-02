@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { ChartType, GraphValue } from 'src/app/services/mock.service';
+import { ChartType, GraphValue } from 'src/app/core/services/mock.service';
 import { HighchartsChartModule } from 'highcharts-angular';
 
 export type Graph = ChartType & {

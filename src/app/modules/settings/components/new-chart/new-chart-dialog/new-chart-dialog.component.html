@@ -34,7 +34,7 @@
     color="primary"
     cdkFocusInitial
     (click)="onAddChart()"
-    [disabled]="!title || !color || !type"
+    [disabled]="!title || !color || !type || status === 'loading'"
   >
     Add chart
   </button>

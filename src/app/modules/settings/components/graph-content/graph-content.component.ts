@@ -18,8 +18,10 @@ export class GraphContentComponent {
   onDelete() {
     this.loading = true;
 
-    this.chartTypesService.deleteChartType(this.data.$id).subscribe((data) => {
-      this.loading = false;
-    });
+    this.chartTypesService
+      .deleteChartType(this.data?.$id || '')
+      .subscribe((data) => {
+        this.loading = false;
+      });
   }
 }

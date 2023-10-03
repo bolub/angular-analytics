@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  ChartTypeFull,
-  ChartTypesService,
-} from '../../core/services/chart-types.service';
+import { ChartTypeFull } from '../../core/services/chart-types.service';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import {
+  selectAllChartTypes,
+  selectChartTypesLoadingStatus,
+} from 'src/app/shared/state/chart-types/chart-type.selector';
+import { loadChartTypes } from 'src/app/shared/state/chart-types/chart-type.action';
 
 @Component({
   selector: 'app-settings',
@@ -13,14 +16,21 @@ export class SettingsComponent implements OnInit, OnDestroy {
   chartTypesList: ChartTypeFull[] = [];
   subscription!: Subscription;
 
-  constructor(private chartTypesService: ChartTypesService) {}
+  // @ts-ignore
+  allChartTypes$ = this.store.select(selectAllChartTypes);
+
+  // @ts-ignore
+  allChartTypesStatus$ = this.store.select(selectChartTypesLoadingStatus);
+
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.subscription = this.chartTypesService.getChartTypes$.subscribe(
-      (data) => {
-        this.chartTypesList = data.documents;
-      }
-    );
+    this.store.dispatch(loadChartTypes());
+
+    this.subscription = this.allChartTypes$.subscribe((data) => {
+      // @ts-ignore
+      this.chartTypesList = data;
+    });
   }
 
   ngOnDestroy(): void {

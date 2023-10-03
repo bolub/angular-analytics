@@ -4,9 +4,28 @@
   </div>
 </app-page-header>
 
+<div *ngIf="allChartTypesStatus$ | async as status">
+  <div
+    *ngIf="status === 'loading'"
+    class="flex w-full justify-center text-center items-center h-[40vh]"
+  >
+    <p>Loading data...</p>
+  </div>
+</div>
+
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
   <app-graph-content
     *ngFor="let chartType of chartTypesList"
     [data]="chartType"
   />
 </div>
+
+<!-- <div
+  *ngIf="allChartTypes$ | async as allChartTypes"
+  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+>
+  <app-graph-content
+    *ngFor="let chartType of allChartTypes"
+    [data]="chartType"
+  />
+</div> -->

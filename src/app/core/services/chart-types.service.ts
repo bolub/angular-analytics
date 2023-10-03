@@ -5,8 +5,8 @@ import { Observable, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export type ChartTypeFull = {
-  $id: string;
-  $createdAt: Date;
+  $id?: string;
+  $createdAt?: Date;
 } & ChartType;
 
 @Injectable({
@@ -29,7 +29,7 @@ export class ChartTypesService {
     .pipe(shareReplay(1));
 
   createChartType(ct: ChartType): Observable<any> {
-    return this.http.post<ChartType>(
+    return this.http.post<any>(
       this.httpUrl,
       {
         documentId: this.mockService.generateUniqueId(),

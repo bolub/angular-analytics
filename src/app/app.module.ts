@@ -20,6 +20,9 @@ import { NewChartDialogComponent } from './modules/settings/components/new-chart
 import { NewChartComponent } from './modules/settings/components/new-chart/new-chart.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { ChartTypeEffects } from './shared/state/chart-types/chart-type.effects';
+import { chartTypeReducer } from './shared/state/chart-types/chart-type.reducer';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { StoreModule } from '@ngrx/store';
     NewChartComponent,
     GraphDisplayComponent,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ chartTypes: chartTypeReducer }),
+    EffectsModule.forRoot([ChartTypeEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

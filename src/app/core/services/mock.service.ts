@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 export type ChartType = {
   title: string;
-  type: 'bar' | 'pie' | 'line' | 'spline' | 'area';
+  selectedType: 'bar' | 'pie' | 'line' | 'spline' | 'area';
   color: string;
 };
 
@@ -78,7 +78,6 @@ export class MockService {
     ];
   }
 
-  private idCounter: number = 0;
   private idLength: number = 8;
 
   generateUniqueId(): string {

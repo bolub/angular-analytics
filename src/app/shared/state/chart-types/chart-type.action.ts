@@ -4,7 +4,7 @@ import { ChartType } from 'src/app/core/services/mock.service';
 export type NewChartType = {
   title: ChartType['title'];
   color: ChartType['color'];
-  selectedType: ChartType['type'];
+  selectedType: ChartType['selectedType'];
 };
 
 export const createChartType = createAction(

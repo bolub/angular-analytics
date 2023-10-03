@@ -25,12 +25,7 @@ export class ChartTypeEffects {
         this.chartTypeService.getChartTypes$.pipe(
           map((data) =>
             chartTypeActions.loadChartTypesSuccess({
-              chartTypes: data.documents.map((data) => {
-                return {
-                  ...data,
-                  selectedType: data.type,
-                };
-              }),
+              chartTypes: data.documents,
             })
           ),
           catchError((error) =>
@@ -46,13 +41,7 @@ export class ChartTypeEffects {
       ofType(chartTypeActions.createChartType),
       withLatestFrom(this.store.select(selectAllChartTypes)),
       switchMap(([action]) =>
-        from(
-          this.chartTypeService.createChartType({
-            title: action.title,
-            color: action.color,
-            type: action.selectedType,
-          })
-        ).pipe(
+        from(this.chartTypeService.createChartType(action)).pipe(
           map((chartType) =>
             chartTypeActions.createChartTypeSuccess({ chartType })
           ),

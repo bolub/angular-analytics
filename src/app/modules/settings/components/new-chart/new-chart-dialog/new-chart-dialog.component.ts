@@ -47,7 +47,7 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
 
   title!: string;
   color!: string;
-  type!: ChartType['type'];
+  type!: ChartType['selectedType'];
 
   // @ts-ignore
   statusSubscription$ = this.store.select(selectChartTypeStatus);

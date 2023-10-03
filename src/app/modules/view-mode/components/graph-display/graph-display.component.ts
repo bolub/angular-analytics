@@ -44,7 +44,7 @@ export class GraphDisplayComponent implements OnInit {
       series: [
         {
           data: this.formatData(),
-          type: this.data.type as any,
+          type: this.data.selectedType as any,
         },
       ],
       xAxis: {

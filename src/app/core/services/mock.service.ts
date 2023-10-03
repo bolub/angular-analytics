@@ -1,16 +1,6 @@
 import { Injectable } from '@angular/core';
-
-export type ChartType = {
-  title: string;
-  selectedType: 'bar' | 'pie' | 'line' | 'spline' | 'area';
-  color: string;
-};
-
-export type GraphValue = {
-  label: string;
-  value: number;
-  date: Date;
-};
+// import { GraphValue } from 'src/app/modules/settings/settings.model';
+import { GraphValue } from '../../modules/settings/settings.model';
 
 @Injectable({
   providedIn: 'root',
@@ -56,26 +46,6 @@ export class MockService {
     }
 
     return graphValues;
-  }
-
-  generateChartTypeData() {
-    return [
-      {
-        title: 'Chart 1',
-        type: 'line',
-        color: 'red',
-      },
-      {
-        title: 'Chart 2',
-        type: 'bar',
-        color: 'green',
-      },
-      {
-        title: 'Chart 3',
-        type: 'pie',
-        color: 'yellow',
-      },
-    ];
   }
 
   private idLength: number = 8;

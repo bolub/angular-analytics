@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
-import {
-  ChartTypeFull,
-  ChartTypesService,
-} from 'src/app/core/services/chart-types.service';
+import { ChartTypesService } from 'src/app/core/services/chart-types.service';
+import { ChartTypeFull } from '../../settings.model';
 
 @Component({
   selector: 'app-graph-content',

@@ -1,6 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
 import {
-  NewChartType,
   createChartType,
   createChartTypeError,
   createChartTypeSuccess,
@@ -8,11 +7,12 @@ import {
   loadChartTypesFailure,
   loadChartTypesSuccess,
 } from './chart-type.action';
+import { ChartTypeFull } from 'src/app/modules/settings/settings.model';
 
 export type Status = 'pending' | 'loading' | 'error' | 'success';
 
 export interface ChartTypeState {
-  chartTypes: NewChartType[];
+  chartTypes: ChartTypeFull[];
   error: string;
   status: Status;
   allChartTypesLoadingStatus: Status;

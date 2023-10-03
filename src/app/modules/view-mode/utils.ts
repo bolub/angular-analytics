@@ -1,8 +1,8 @@
-import { ChartType, GraphValue } from '../../core/services/mock.service';
+import { ChartTypeFull, GraphValue } from '../settings/settings.model';
 import { RangeType } from './view-mode.component';
 
 export function formatData(
-  chartTypesList: ChartType[],
+  chartTypesList: ChartTypeFull[],
   graphValues: GraphValue[]
 ) {
   return chartTypesList.map((ctld) => {

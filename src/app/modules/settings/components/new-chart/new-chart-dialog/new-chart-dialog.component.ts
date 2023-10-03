@@ -6,13 +6,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
-import { ChartType } from 'src/app/core/services/mock.service';
 import { Store } from '@ngrx/store';
 import { createChartType } from 'src/app/shared/state/chart-types/chart-type.action';
 import { selectChartTypeStatus } from 'src/app/shared/state/chart-types/chart-type.selector';
 import { Status } from 'src/app/shared/state/chart-types/chart-type.reducer';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+import { ChartType } from '../../../settings.model';
 
 interface ChartTypeSelector {
   value: string;

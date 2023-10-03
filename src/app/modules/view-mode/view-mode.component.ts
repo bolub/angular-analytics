@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { GraphValue, MockService } from '../../core/services/mock.service';
+import { MockService } from '../../core/services/mock.service';
 import { ChartTypesService } from '../../core/services/chart-types.service';
 import { map } from 'rxjs';
 import { filterByDateRange, formatData } from './utils';
+import { GraphValue } from '../settings/settings.model';
 
 export type RangeType = { start?: Date | null; end?: Date | null };
 

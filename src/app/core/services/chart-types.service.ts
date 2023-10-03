@@ -1,13 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ChartType, MockService } from './mock.service';
+import { MockService } from './mock.service';
 import { Observable, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
-export type ChartTypeFull = {
-  $id?: string;
-  $createdAt?: Date;
-} & ChartType;
+import {
+  ChartType,
+  ChartTypeFull,
+} from 'src/app/modules/settings/settings.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,11 +23,9 @@ export class ChartTypesService {
     }),
   };
 
-  getChartTypes$ = this.http.get<{ documents: ChartTypeFull[] }>(
-    this.httpUrl,
-    this.httpOptions
-  );
-  // .pipe(shareReplay(1));
+  getChartTypes$ = this.http
+    .get<{ documents: ChartTypeFull[] }>(this.httpUrl, this.httpOptions)
+    .pipe(shareReplay(1));
 
   createChartType(ct: ChartType): Observable<any> {
     return this.http.post<any>(

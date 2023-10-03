@@ -1,20 +1,17 @@
 import { createAction, props } from '@ngrx/store';
-import { ChartType } from 'src/app/core/services/mock.service';
-
-export type NewChartType = {
-  title: ChartType['title'];
-  color: ChartType['color'];
-  selectedType: ChartType['selectedType'];
-};
+import {
+  ChartType,
+  ChartTypeFull,
+} from 'src/app/modules/settings/settings.model';
 
 export const createChartType = createAction(
   '[CHART_TYPE] Create ChartType',
-  props<NewChartType>()
+  props<ChartType>()
 );
 
 export const createChartTypeSuccess = createAction(
   '[CHART_TYPE] Create ChartType Success',
-  props<{ chartType: NewChartType }>()
+  props<{ chartType: ChartType }>()
 );
 
 export const createChartTypeError = createAction(
@@ -33,7 +30,7 @@ export const loadChartTypes = createAction('[CHART_TYPE] Load ChartTypes');
 
 export const loadChartTypesSuccess = createAction(
   '[CHART_TYPE] Load ChartTypes Success',
-  props<{ chartTypes: NewChartType[] }>()
+  props<{ chartTypes: ChartTypeFull[] }>()
 );
 
 export const loadChartTypesFailure = createAction(

@@ -1,6 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ChartTypeFull } from '../../core/services/chart-types.service';
-import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import {
   selectAllChartTypes,
@@ -12,10 +10,7 @@ import { loadChartTypes } from 'src/app/shared/state/chart-types/chart-type.acti
   selector: 'app-settings',
   templateUrl: './settings.component.html',
 })
-export class SettingsComponent implements OnInit, OnDestroy {
-  chartTypesList: ChartTypeFull[] = [];
-  subscription!: Subscription;
-
+export class SettingsComponent implements OnInit {
   // @ts-ignore
   allChartTypes$ = this.store.select(selectAllChartTypes);
 
@@ -26,16 +21,5 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.store.dispatch(loadChartTypes());
-
-    this.subscription = this.allChartTypes$.subscribe((data) => {
-      // @ts-ignore
-      this.chartTypesList = data;
-    });
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 }

@@ -9,7 +9,7 @@
 
     <mat-form-field>
       <mat-label>Chart type</mat-label>
-      <mat-select [(ngModel)]="type" name="type">
+      <mat-select [(ngModel)]="selectedType" name="type">
         <mat-option
           *ngFor="let chartType of chartTypes"
           [value]="chartType.value"
@@ -34,7 +34,7 @@
     color="primary"
     cdkFocusInitial
     (click)="onAddChart()"
-    [disabled]="!title || !color || !type || status === 'loading'"
+    [disabled]="!title || !color || !selectedType || status === 'loading'"
   >
     Add chart
   </button>

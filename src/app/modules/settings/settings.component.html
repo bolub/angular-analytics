@@ -13,14 +13,7 @@
   </div>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  <app-graph-content
-    *ngFor="let chartType of chartTypesList"
-    [data]="chartType"
-  />
-</div>
-
-<!-- <div
+<div
   *ngIf="allChartTypes$ | async as allChartTypes"
   class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
 >
@@ -28,4 +21,4 @@
     *ngFor="let chartType of allChartTypes"
     [data]="chartType"
   />
-</div> -->
+</div>

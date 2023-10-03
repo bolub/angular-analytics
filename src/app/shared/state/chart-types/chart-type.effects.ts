@@ -41,10 +41,17 @@ export class ChartTypeEffects {
       ofType(chartTypeActions.createChartType),
       withLatestFrom(this.store.select(selectAllChartTypes)),
       switchMap(([action]) =>
-        from(this.chartTypeService.createChartType(action)).pipe(
-          map((chartType) =>
-            chartTypeActions.createChartTypeSuccess({ chartType })
-          ),
+        from(
+          this.chartTypeService.createChartType({
+            title: action.title,
+            color: action.color,
+            selectedType: action.selectedType,
+          })
+        ).pipe(
+          switchMap((chartType) => [
+            chartTypeActions.createChartTypeSuccess({ chartType }),
+            chartTypeActions.loadChartTypes(),
+          ]),
           catchError((error) =>
             of(chartTypeActions.createChartTypeError({ error }))
           )

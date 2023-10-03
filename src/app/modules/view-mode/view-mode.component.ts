@@ -4,6 +4,9 @@ import { ChartTypesService } from '../../core/services/chart-types.service';
 import { map } from 'rxjs';
 import { filterByDateRange, formatData } from './utils';
 import { GraphValue } from '../settings/settings.model';
+import { loadChartTypes } from 'src/app/shared/state/chart-types/chart-type.action';
+import { Store } from '@ngrx/store';
+import { selectAllChartTypes } from 'src/app/shared/state/chart-types/chart-type.selector';
 
 export type RangeType = { start?: Date | null; end?: Date | null };
 
@@ -12,15 +15,18 @@ export type RangeType = { start?: Date | null; end?: Date | null };
   templateUrl: './view-mode.component.html',
 })
 export class ViewModeComponent implements OnInit {
+  // @ts-ignore
+  chartTypesList$ = this.store.select(selectAllChartTypes).pipe(
+    map((chartTypes) => {
+      return formatData([...chartTypes], this.graphValues);
+    })
+  );
+
   rangeValues: RangeType = {
     start: null,
     end: null,
   };
-  chartTypesList$ = this.chartTypesService.getChartTypes$.pipe(
-    map((chartTypes) => {
-      return formatData([...chartTypes.documents], this.graphValues);
-    })
-  );
+
   graphValues: GraphValue[] = [];
 
   handleDateChange(range: RangeType) {
@@ -52,10 +58,12 @@ export class ViewModeComponent implements OnInit {
 
   constructor(
     private mockService: MockService,
-    private chartTypesService: ChartTypesService
+    private chartTypesService: ChartTypesService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
     this.graphValues = this.mockService.generateGraphData();
+    this.store.dispatch(loadChartTypes());
   }
 }

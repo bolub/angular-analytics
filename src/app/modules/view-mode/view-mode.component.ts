@@ -6,7 +6,10 @@ import { filterByDateRange, formatData } from './utils';
 import { GraphValue } from '../settings/settings.model';
 import { loadChartTypes } from 'src/app/shared/state/chart-types/chart-type.action';
 import { Store } from '@ngrx/store';
-import { selectAllChartTypes } from 'src/app/shared/state/chart-types/chart-type.selector';
+import {
+  selectAllChartTypes,
+  selectChartTypesLoadingStatus,
+} from 'src/app/shared/state/chart-types/chart-type.selector';
 
 export type RangeType = { start?: Date | null; end?: Date | null };
 
@@ -21,6 +24,9 @@ export class ViewModeComponent implements OnInit {
       return formatData([...chartTypes], this.graphValues);
     })
   );
+
+  // @ts-ignore
+  allChartTypesStatus$ = this.store.select(selectChartTypesLoadingStatus);
 
   rangeValues: RangeType = {
     start: null,

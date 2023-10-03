@@ -25,12 +25,18 @@
   </span>
 </button>
 
-<div
-  class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10"
-  *ngIf="chartTypesList$ | async as chartTypeList"
->
-  <app-graph-display
-    *ngFor="let chartTypeListData of chartTypeList"
-    [data]="chartTypeListData"
-  />
-</div>
+<main class="mt-10">
+  <div *ngIf="allChartTypesStatus$ | async as status">
+    <app-loader [status]="status" />
+  </div>
+
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-10"
+    *ngIf="chartTypesList$ | async as chartTypeList"
+  >
+    <app-graph-display
+      *ngFor="let chartTypeListData of chartTypeList"
+      [data]="chartTypeListData"
+    />
+  </div>
+</main>

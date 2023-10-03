@@ -23,6 +23,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { ChartTypeEffects } from './shared/state/chart-types/chart-type.effects';
 import { chartTypeReducer } from './shared/state/chart-types/chart-type.reducer';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { chartTypeReducer } from './shared/state/chart-types/chart-type.reducer'
     ViewModeComponent,
     PageHeaderComponent,
     GraphContentComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

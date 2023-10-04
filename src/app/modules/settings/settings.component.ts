@@ -13,10 +13,7 @@ import { combineLatest } from 'rxjs';
 })
 export class SettingsComponent implements OnInit {
   data$ = combineLatest({
-    // @ts-ignore
     allChartTypes: this.store.select(selectAllChartTypes),
-
-    // @ts-ignore
     allChartTypesStatus: this.store.select(selectChartTypesLoadingStatus),
   });
 

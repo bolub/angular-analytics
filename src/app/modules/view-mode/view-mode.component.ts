@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, combineLatest, map } from 'rxjs';
 import { formatData } from './utils';
 import {
   filterCharts,
@@ -22,13 +22,8 @@ import { RangeType, ViewMode } from './view-mode.model';
 export class ViewModeComponent implements OnInit {
   chartTypesList$!: Observable<ViewMode[]>;
 
-  // @ts-ignore
   allChartTypesStatus$ = this.store.select(selectChartTypesLoadingStatus);
-
-  // @ts-ignore
   graphValues$ = this.store.select(selectGraphValues);
-
-  // @ts-ignore
   filteredGraphValues$ = this.store.select(selectFilteredGraphValues);
 
   rangeValues: RangeType = {

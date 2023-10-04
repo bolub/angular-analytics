@@ -10,17 +10,16 @@ import { Store } from '@ngrx/store';
 import {
   createChartType,
   loadChartTypes,
+  updateChartType,
 } from 'src/app/shared/state/chart-types/chart-type.action';
 import {
   selectActionType,
   selectChartTypeStatus,
+  selectCurrentChartType,
 } from 'src/app/shared/state/chart-types/chart-type.selector';
-import {
-  ActionType,
-  Status,
-} from 'src/app/shared/state/chart-types/chart-type.reducer';
+import { Status } from 'src/app/shared/state/chart-types/chart-type.reducer';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { Subscription, combineLatest, firstValueFrom } from 'rxjs';
+import { Subscription, combineLatest } from 'rxjs';
 import { ChartType } from '../../../settings.model';
 
 interface ChartTypeSelector {
@@ -55,6 +54,8 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
   title = '';
   color = '';
   selectedType!: ChartType['selectedType'];
+  type = 'newChart';
+  id = '';
 
   status!: Status;
   dataSubscription$!: Subscription;
@@ -69,14 +70,30 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
     this.dataSubscription$ = combineLatest({
       status: this.store.select(selectChartTypeStatus),
       actionType: this.store.select(selectActionType),
+      currentChartType: this.store.select(selectCurrentChartType),
     }).subscribe((data) => {
-      const { status, actionType } = data;
+      const { status, actionType, currentChartType } = data;
+
       this.status = status;
 
-      if (status === 'success' && actionType === 'create') {
-        this.dialog.closeAll();
-        this._snackBar.open('Chart added successfully', 'close');
-        this.store.dispatch(loadChartTypes());
+      if (currentChartType) {
+        this.id = currentChartType.$id;
+        this.title = currentChartType.title;
+        this.color = currentChartType.color;
+        this.selectedType = currentChartType.selectedType;
+        this.type = 'updateChart';
+
+        if (status === 'success' && actionType === 'update') {
+          this.dialog.closeAll();
+          this._snackBar.open('Chart updated successfully', 'close');
+          this.store.dispatch(loadChartTypes());
+        }
+      } else {
+        if (status === 'success' && actionType === 'create') {
+          this.dialog.closeAll();
+          this._snackBar.open('Chart added successfully', 'close');
+          this.store.dispatch(loadChartTypes());
+        }
       }
     });
   }
@@ -93,6 +110,19 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
         title: this.title,
         color: this.color,
         selectedType: this.selectedType,
+      })
+    );
+  }
+
+  onUpdateChart() {
+    this.store.dispatch(
+      updateChartType({
+        $id: this.id,
+        data: {
+          title: this.title,
+          color: this.color,
+          selectedType: this.selectedType,
+        },
       })
     );
   }

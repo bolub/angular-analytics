@@ -11,6 +11,10 @@ import {
   loadChartTypesFailure,
   loadChartTypesSuccess,
   resetViewModeData,
+  setCurrentChartType,
+  updateChartType,
+  updateChartTypeError,
+  updateChartTypeSuccess,
 } from './chart-type.action';
 import { ChartTypeFull } from 'src/app/modules/settings/settings.model';
 import { RangeType, ViewMode } from 'src/app/modules/view-mode/view-mode.model';
@@ -28,6 +32,7 @@ export interface ChartTypeState {
   actionType?: ActionType;
   allChartTypesLoadingStatus: Status;
   filterRange: RangeType;
+  currentChartType?: ChartTypeFull;
 }
 
 export const initialChartTypesState: ChartTypeState = {
@@ -42,6 +47,7 @@ export const initialChartTypesState: ChartTypeState = {
     end: null,
   },
   actionType: undefined,
+  currentChartType: undefined,
 };
 
 export const chartTypeReducer = createReducer(
@@ -63,6 +69,12 @@ export const chartTypeReducer = createReducer(
     error: payload.error,
     status: 'error' as Status,
     actionType: undefined,
+  })),
+
+  // set current chart type
+  on(setCurrentChartType, (state, payload) => ({
+    ...state,
+    currentChartType: payload.data,
   })),
 
   // delete chart types
@@ -124,5 +136,23 @@ export const chartTypeReducer = createReducer(
         end: null,
       },
     };
-  })
+  }),
+
+  // update chart types
+  on(updateChartType, (state, payload) => ({
+    ...state,
+    status: 'loading' as Status,
+    actionType: 'update' as ActionType,
+  })),
+  on(updateChartTypeSuccess, (state, payload) => ({
+    ...state,
+    status: 'success' as Status,
+    actionType: undefined,
+  })),
+  on(updateChartTypeError, (state, payload) => ({
+    ...state,
+    error: payload.error,
+    status: 'error' as Status,
+    actionType: undefined,
+  }))
 );

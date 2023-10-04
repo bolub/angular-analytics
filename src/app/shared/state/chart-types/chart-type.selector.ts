@@ -33,3 +33,8 @@ export const selectFilterRange = createSelector(
   selectChartTypesState,
   (state) => state.filterRange
 );
+
+export const selectCurrentChartType = createSelector(
+  selectChartTypesState,
+  (state) => state.currentChartType
+);

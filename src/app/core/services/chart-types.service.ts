@@ -49,6 +49,22 @@ export class ChartTypesService {
     );
   }
 
+  updateChartType({
+    documentId,
+    data,
+  }: {
+    documentId: string;
+    data: Partial<ChartType>;
+  }) {
+    return this.http.patch<ChartTypeFull>(
+      `${this.httpUrl}/${documentId}`,
+      {
+        data,
+      },
+      this.httpOptions
+    );
+  }
+
   deleteChartType(documentId: string) {
     return this.http.delete<ChartType>(
       `${this.httpUrl}/${documentId}`,

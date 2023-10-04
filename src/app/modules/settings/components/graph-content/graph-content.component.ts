@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import {
   deleteChartType,
   loadChartTypes,
+  setCurrentChartType,
 } from 'src/app/shared/state/chart-types/chart-type.action';
 import {
   selectActionType,
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
+import { NewChartDialogComponent } from '../new-chart/new-chart-dialog/new-chart-dialog.component';
 
 @Component({
   selector: 'app-graph-content',
@@ -45,6 +47,15 @@ export class GraphContentComponent {
     );
   }
 
+  openEditModal() {
+    this.store.dispatch(
+      setCurrentChartType({
+        data: this.data,
+      })
+    );
+    this.dialog.open(NewChartDialogComponent);
+  }
+
   ngOnInit(): void {
     this.dataSubscription$ = combineLatest({
       status: this.store.select(selectChartTypeStatus),
@@ -59,17 +70,6 @@ export class GraphContentComponent {
         this.store.dispatch(loadChartTypes());
       }
     });
-
-    // this.statusSubscription = this.store
-    //   .select(selectChartTypeStatus)
-    //   .subscribe((status) => {
-    //     this.status = status;
-
-    //     if (status === 'success') {
-    //       this._snackBar.open('Chart deleted successfully', 'close');
-    //       // this.store.dispatch(loadChartTypes());
-    //     }
-    //   });
   }
 
   ngOnDestroy(): void {

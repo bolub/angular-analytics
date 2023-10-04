@@ -84,4 +84,26 @@ export class ChartTypeEffects {
       )
     )
   );
+
+  updateChartType$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(chartTypeActions.updateChartType),
+      withLatestFrom(this.store.select(selectAllChartTypes)),
+      switchMap(([action]) =>
+        from(
+          this.chartTypeService.updateChartType({
+            documentId: action.$id,
+            data: action.data,
+          })
+        ).pipe(
+          switchMap((chartType) => {
+            return [chartTypeActions.updateChartTypeSuccess({ chartType })];
+          }),
+          catchError((error) =>
+            of(chartTypeActions.updateChartTypeError({ error }))
+          )
+        )
+      )
+    )
+  );
 }

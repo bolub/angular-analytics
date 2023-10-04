@@ -59,3 +59,25 @@ export const filterViewModeData = createAction(
 export const resetViewModeData = createAction(
   '[Chart Type] Reset View Mode Data'
 );
+
+// update chart type
+export const setCurrentChartType = createAction(
+  '[Chart Type] Set Current Chart Type',
+  props<{
+    data: ChartTypeFull;
+  }>()
+);
+
+export const updateChartType = createAction(
+  '[Chart Type] Update',
+  props<{ $id: string; data: Partial<ChartType> }>()
+);
+
+export const updateChartTypeSuccess = createAction(
+  '[Chart Type] Update Success',
+  props<{ chartType: ChartType }>()
+);
+export const updateChartTypeError = createAction(
+  '[Chart Type] Update Error',
+  props<{ error: any }>()
+);

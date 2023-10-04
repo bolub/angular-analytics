@@ -22,3 +22,7 @@ button{
 .mat-mdc-dialog-container .mdc-dialog__title {
     @apply font-semibold text-2xl tracking-normal !important
 }
+
+.mat-mdc-fab, .mat-mdc-mini-fab{
+    box-shadow: none !important;
+}

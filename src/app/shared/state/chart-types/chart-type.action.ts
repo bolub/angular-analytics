@@ -6,55 +6,45 @@ import {
 } from 'src/app/modules/settings/settings.model';
 import { RangeType } from 'src/app/modules/view-mode/view-mode.model';
 
-// create chart actions
+// Chart Type Actions
 export const createChartType = createAction(
-  '[CHART_TYPE] Create ChartType',
+  '[Chart Type] Create',
   props<ChartType>()
 );
-
 export const createChartTypeSuccess = createAction(
-  '[CHART_TYPE] Create ChartType Success',
+  '[Chart Type] Create Success',
   props<{ chartType: ChartType }>()
 );
-
 export const createChartTypeError = createAction(
-  '[CHART_TYPE] Create ChartType Error',
+  '[Chart Type] Create Error',
   props<{ error: any }>()
 );
 
-// delete chart actions
 export const deleteChartType = createAction(
-  '[CHART_TYPE] Delete ChartType',
-  props<{
-    $id: string;
-  }>()
+  '[Chart Type] Delete',
+  props<{ $id: string }>()
 );
 
-// load chart actions
-export const loadChartTypes = createAction('[CHART_TYPE] Load ChartTypes');
-
+export const loadChartTypes = createAction('[Chart Type] Load');
 export const loadChartTypesSuccess = createAction(
-  '[CHART_TYPE] Load ChartTypes Success',
+  '[Chart Type] Load Success',
   props<{ chartTypes: ChartTypeFull[] }>()
 );
-
 export const loadChartTypesFailure = createAction(
-  '[CHART_TYPE] Load ChartTypes Failure',
+  '[Chart Type] Load Failure',
   props<{ error: string }>()
 );
 
 export const loadGraphData = createAction(
-  '[CHART_TYPE] Load GraphData',
+  '[Chart Type] Load Graph Data',
   props<{ data: GraphValue[] }>()
 );
 
-// filter charts actions
-export const filterCharts = createAction(
-  '[CHART_TYPE] Filter ChartTypes',
-
+// Filter Chart Types Actions
+export const filterChartTypes = createAction(
+  '[Chart Type] Filter',
   props<{ range: RangeType }>()
 );
-
-export const resetFilteredCharts = createAction(
-  '[CHART_TYPE] Filter ChartTypes'
+export const resetFilteredChartTypes = createAction(
+  '[Chart Type] Reset Filter'
 );

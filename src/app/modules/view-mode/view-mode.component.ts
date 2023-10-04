@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, combineLatest, map } from 'rxjs';
 import { formatData } from './utils';
 import {
-  filterCharts,
+  filterChartTypes,
   loadChartTypes,
-  resetFilteredCharts,
+  resetFilteredChartTypes,
 } from 'src/app/shared/state/chart-types/chart-type.action';
 import { Store } from '@ngrx/store';
 import {
@@ -33,7 +33,7 @@ export class ViewModeComponent implements OnInit {
 
   handleDateChange(range: RangeType) {
     this.rangeValues = range;
-    this.store.dispatch(filterCharts({ range }));
+    this.store.dispatch(filterChartTypes({ range }));
   }
 
   resetDateRange() {
@@ -42,7 +42,7 @@ export class ViewModeComponent implements OnInit {
       end: null,
     };
 
-    this.store.dispatch(resetFilteredCharts());
+    this.store.dispatch(resetFilteredChartTypes());
   }
 
   constructor(private store: Store) {}

@@ -3,12 +3,12 @@ import {
   createChartType,
   createChartTypeError,
   createChartTypeSuccess,
-  filterCharts,
+  filterChartTypes,
   loadChartTypes,
   loadChartTypesFailure,
   loadChartTypesSuccess,
   loadGraphData,
-  resetFilteredCharts,
+  resetFilteredChartTypes,
 } from './chart-type.action';
 import {
   ChartTypeFull,
@@ -78,7 +78,7 @@ export const chartTypeReducer = createReducer(
   })),
 
   // filter chart types
-  on(filterCharts, (state, { range }) => {
+  on(filterChartTypes, (state, { range }) => {
     // console.log(range);
     // console.log(filterByDateRange([...state.graphValues], range));
 
@@ -91,7 +91,7 @@ export const chartTypeReducer = createReducer(
     };
   }),
 
-  on(resetFilteredCharts, (state) => {
+  on(resetFilteredChartTypes, (state) => {
     return {
       ...state,
       filteredGraphValues: state.graphValues,

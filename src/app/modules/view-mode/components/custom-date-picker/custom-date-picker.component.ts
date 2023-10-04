@@ -10,12 +10,12 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { CommonModule, DatePipe, JsonPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import {
-  filterChartTypes,
-  resetFilteredChartTypes,
+  filterViewModeData,
+  resetViewModeData,
 } from '../../../../shared/state/chart-types/chart-type.action';
 import { selectFilterRange } from '../../../../shared/state/chart-types/chart-type.selector';
 
@@ -50,7 +50,7 @@ export class CustomDatePickerComponent {
 
   onApply() {
     this.store.dispatch(
-      filterChartTypes({
+      filterViewModeData({
         range: {
           start: this.range.get('start')?.value,
           end: this.range.get('end')?.value,
@@ -60,7 +60,7 @@ export class CustomDatePickerComponent {
   }
 
   resetDateRange() {
-    this.store.dispatch(resetFilteredChartTypes());
+    this.store.dispatch(resetViewModeData());
     this.range.reset();
   }
 }

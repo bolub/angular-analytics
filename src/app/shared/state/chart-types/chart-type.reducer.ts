@@ -3,39 +3,35 @@ import {
   createChartType,
   createChartTypeError,
   createChartTypeSuccess,
-  filterChartTypes,
+  filterViewModeData,
   loadChartTypes,
   loadChartTypesFailure,
   loadChartTypesSuccess,
-  loadGraphData,
-  resetFilteredChartTypes,
+  resetViewModeData,
 } from './chart-type.action';
-import {
-  ChartTypeFull,
-  GraphValue,
-} from 'src/app/modules/settings/settings.model';
-import { filterByDateRange, formatData } from 'src/app/modules/view-mode/utils';
-import { RangeType } from 'src/app/modules/view-mode/view-mode.model';
+import { ChartTypeFull } from 'src/app/modules/settings/settings.model';
+import { RangeType, ViewMode } from 'src/app/modules/view-mode/view-mode.model';
+import { filterValidItemsInRange } from 'src/app/modules/view-mode/utils';
 
 export type Status = 'pending' | 'loading' | 'error' | 'success';
 
 export interface ChartTypeState {
   allChartTypes: ChartTypeFull[];
+  allChartTypesForViewMode: ViewMode[];
+  originalAllChartTypesForViewMode: ViewMode[];
   error: string;
   status: Status;
   allChartTypesLoadingStatus: Status;
-  graphValues: GraphValue[];
-  filteredGraphValues: GraphValue[];
   filterRange: RangeType;
 }
 
-export const initialState: ChartTypeState = {
+export const initialChartTypesState: ChartTypeState = {
   allChartTypes: [],
+  allChartTypesForViewMode: [],
+  originalAllChartTypesForViewMode: [],
   error: '',
   status: 'pending' as Status,
   allChartTypesLoadingStatus: 'pending' as Status,
-  graphValues: [],
-  filteredGraphValues: [],
   filterRange: {
     start: null,
     end: null,
@@ -43,7 +39,7 @@ export const initialState: ChartTypeState = {
 };
 
 export const chartTypeReducer = createReducer(
-  initialState,
+  initialChartTypesState,
 
   // create chart types
   on(createChartType, (state, payload) => ({
@@ -69,39 +65,33 @@ export const chartTypeReducer = createReducer(
     ...state,
     allChartTypesLoadingStatus: 'success' as Status,
     allChartTypes: payload.chartTypes,
+    allChartTypesForViewMode: payload.chartTypesForViewMode,
+    originalAllChartTypesForViewMode: payload.chartTypesForViewMode,
   })),
+
   on(loadChartTypesFailure, (state, payload) => ({
     ...state,
     allChartTypesLoadingStatus: 'error' as Status,
     error: payload.error,
   })),
 
-  // load graph value
-  on(loadGraphData, (state, payload) => ({
-    ...state,
-    graphValues: payload.data,
-    filteredGraphValues: payload.data,
-  })),
-
-  // filter chart types
-  on(filterChartTypes, (state, { range }) => {
-    const filteredGraphValues = filterByDateRange(
-      [...state.graphValues],
+  // filter view mode data
+  on(filterViewModeData, (state, { range }) => {
+    const filteredAllChartTypesForViewMode = filterValidItemsInRange(
+      [...state.allChartTypesForViewMode],
       range
     );
 
     return {
       ...state,
-      filteredGraphValues: filteredGraphValues,
-      chartTypes: formatData([...state.allChartTypes], filteredGraphValues),
+      allChartTypesForViewMode: filteredAllChartTypesForViewMode,
       filterRange: range,
     };
   }),
-
-  on(resetFilteredChartTypes, (state) => {
+  on(resetViewModeData, (state) => {
     return {
       ...state,
-      filteredGraphValues: state.graphValues,
+      allChartTypesForViewMode: state.originalAllChartTypesForViewMode,
       filterRange: {
         start: null,
         end: null,

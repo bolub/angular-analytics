@@ -1,5 +1,5 @@
 import { ChartTypeFull, GraphValue } from '../settings/settings.model';
-import { RangeType } from './view-mode.model';
+import { RangeType, ViewMode } from './view-mode.model';
 
 export function formatData(
   chartTypesList: ChartTypeFull[],
@@ -28,4 +28,34 @@ export function filterByDateRange(graphValues: GraphValue[], range: RangeType) {
   });
 
   return newGraphValues;
+}
+
+export function filterValidItemsInRange(charts: ViewMode[], range: RangeType) {
+  const startDate = dateToString(range?.start);
+  const endDate = dateToString(range.end);
+
+  const validItems: ViewMode[] = [];
+
+  for (const chart of charts) {
+    const validData: GraphValue[] = [];
+
+    for (const dataItem of chart.data) {
+      const itemDate = dateToString(dataItem.date);
+
+      if (itemDate >= startDate && itemDate <= endDate) {
+        validData.push(dataItem);
+      }
+    }
+
+    if (validData.length > 0) {
+      const validChart: ViewMode = {
+        ...chart,
+        data: validData,
+      };
+
+      validItems.push(validChart);
+    }
+  }
+
+  return validItems;
 }

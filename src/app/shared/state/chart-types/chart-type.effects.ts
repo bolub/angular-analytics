@@ -10,6 +10,7 @@ import { ChartTypesService } from 'src/app/core/services/chart-types.service';
 import { selectAllChartTypes } from './chart-type.selector';
 import { AppState } from '../app.state';
 import { MockService } from 'src/app/core/services/mock.service';
+import { formatData } from 'src/app/modules/view-mode/utils';
 
 @Injectable()
 export class ChartTypeEffects {
@@ -29,9 +30,10 @@ export class ChartTypeEffects {
             return [
               chartTypeActions.loadChartTypesSuccess({
                 chartTypes: data.documents,
-              }),
-              chartTypeActions.loadGraphData({
-                data: this.mockService.generateGraphData(),
+                chartTypesForViewMode: formatData(
+                  [...data.documents],
+                  this.mockService.generateGraphData()
+                ),
               }),
             ];
           }),

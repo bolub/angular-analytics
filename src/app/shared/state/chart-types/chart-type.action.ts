@@ -4,7 +4,7 @@ import {
   ChartTypeFull,
   GraphValue,
 } from 'src/app/modules/settings/settings.model';
-import { RangeType } from 'src/app/modules/view-mode/view-mode.model';
+import { RangeType, ViewMode } from 'src/app/modules/view-mode/view-mode.model';
 
 // create actions
 export const createChartType = createAction(
@@ -29,7 +29,7 @@ export const deleteChartType = createAction(
 export const loadChartTypes = createAction('[Chart Type] Load');
 export const loadChartTypesSuccess = createAction(
   '[Chart Type] Load Success',
-  props<{ chartTypes: ChartTypeFull[] }>()
+  props<{ chartTypes: ChartTypeFull[]; chartTypesForViewMode: ViewMode[] }>()
 );
 export const loadChartTypesFailure = createAction(
   '[Chart Type] Load Failure',
@@ -41,10 +41,10 @@ export const loadGraphData = createAction(
   props<{ data: GraphValue[] }>()
 );
 
-export const filterChartTypes = createAction(
-  '[Chart Type] Filter Chart Types',
+export const filterViewModeData = createAction(
+  '[Chart Type] Filter View Mode Data',
   props<{ range: RangeType }>()
 );
-export const resetFilteredChartTypes = createAction(
-  '[Chart Type] Reset Filter'
+export const resetViewModeData = createAction(
+  '[Chart Type] Reset View Mode Data'
 );

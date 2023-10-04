@@ -9,11 +9,11 @@
 
   <div
     class="grid grid-cols-1 md:grid-cols-2 gap-10"
-    *ngIf="chartTypesList$ | async as chartTypeList"
+    *ngIf="allChartTypesForViewMode$ | async as chartTypesForViewModeList"
   >
     <app-graph-display
-      *ngFor="let chartTypeListData of chartTypeList"
-      [data]="chartTypeListData"
+      *ngFor="let chartTypesForViewMode of chartTypesForViewModeList"
+      [data]="chartTypesForViewMode"
     />
   </div>
 </main>

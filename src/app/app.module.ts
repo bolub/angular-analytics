@@ -49,7 +49,9 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
     NewChartComponent,
     GraphDisplayComponent,
     HttpClientModule,
-    StoreModule.forRoot({ chartTypes: chartTypeReducer }),
+    StoreModule.forRoot({
+      chartTypes: chartTypeReducer,
+    }),
     EffectsModule.forRoot([ChartTypeEffects]),
   ],
   providers: [],

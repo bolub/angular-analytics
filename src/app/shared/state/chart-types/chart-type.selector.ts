@@ -9,6 +9,11 @@ export const selectAllChartTypes = createSelector(
   (state) => state.allChartTypes
 );
 
+export const selectAllChartTypesForViewMode = createSelector(
+  selectChartTypesState,
+  (state) => state.allChartTypesForViewMode
+);
+
 export const selectChartTypeStatus = createSelector(
   selectChartTypesState,
   (state) => state.status
@@ -17,16 +22,6 @@ export const selectChartTypeStatus = createSelector(
 export const selectChartTypesLoadingStatus = createSelector(
   selectChartTypesState,
   (state) => state.allChartTypesLoadingStatus
-);
-
-export const selectGraphValues = createSelector(
-  selectChartTypesState,
-  (state) => state.graphValues
-);
-
-export const selectFilteredGraphValues = createSelector(
-  selectChartTypesState,
-  (state) => state.filteredGraphValues
 );
 
 export const selectFilterRange = createSelector(

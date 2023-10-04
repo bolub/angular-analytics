@@ -1,0 +1,26 @@
+<app-page-header title="Analytics" />
+
+<app-custom-date-picker />
+
+<ng-container *ngIf="data$ | async as data">
+  <main class="mt-10">
+    <app-loader [status]="data.status" />
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 gap-10"
+      *ngIf="data.allChartTypesForViewMode && data.status === 'success'"
+    >
+      <app-graph-display
+        *ngFor="let chartTypesForViewMode of data.allChartTypesForViewMode"
+        [data]="chartTypesForViewMode"
+      />
+    </div>
+
+    <app-empty
+      *ngIf="
+        data.status === 'success' && data.allChartTypesForViewMode.length === 0
+      "
+      title="No data available"
+    />
+  </main>
+</ng-container>

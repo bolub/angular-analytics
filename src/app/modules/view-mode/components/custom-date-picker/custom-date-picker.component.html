@@ -1,0 +1,41 @@
+<div class="flex gap-2 items-center">
+  <span class="">Filter by:</span>
+  <mat-form-field>
+    <mat-label>Date range</mat-label>
+    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="Start date" />
+      <input matEndDate formControlName="end" placeholder="End date" />
+    </mat-date-range-input>
+
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+
+  <button
+    class="ml-4"
+    mat-flat-button
+    color="primary"
+    (click)="onApply()"
+    [disabled]="!range.get('start')?.value || !range.get('end')?.value"
+  >
+    Apply
+  </button>
+</div>
+
+<button
+  [ngClass]="rangeValues.start ? 'block' : 'hidden'"
+  class="mt-2 text-sm bg-gray-200 w-fit py-1 px-4 rounded-full cursor-pointer"
+  (click)="resetDateRange()"
+  *ngIf="filterRange$ | async as rangeValues"
+>
+  Date range:
+  <span class="font-semibold">
+    {{ rangeValues.start | date }}
+  </span>
+
+  to
+
+  <span class="font-semibold">
+    {{ rangeValues.end | date }}
+  </span>
+</button>

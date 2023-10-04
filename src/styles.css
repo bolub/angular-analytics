@@ -26,3 +26,7 @@ button{
 .mat-mdc-fab, .mat-mdc-mini-fab{
     box-shadow: none !important;
 }
+
+.mdc-dialog__title {
+    padding: 14px 0 10px 20px !important;
+}

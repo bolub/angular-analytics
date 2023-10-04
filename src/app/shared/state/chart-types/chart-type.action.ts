@@ -6,7 +6,7 @@ import {
 } from 'src/app/modules/settings/settings.model';
 import { RangeType } from 'src/app/modules/view-mode/view-mode.model';
 
-// Chart Type Actions
+// create actions
 export const createChartType = createAction(
   '[Chart Type] Create',
   props<ChartType>()
@@ -25,6 +25,7 @@ export const deleteChartType = createAction(
   props<{ $id: string }>()
 );
 
+// loading actions
 export const loadChartTypes = createAction('[Chart Type] Load');
 export const loadChartTypesSuccess = createAction(
   '[Chart Type] Load Success',
@@ -40,9 +41,8 @@ export const loadGraphData = createAction(
   props<{ data: GraphValue[] }>()
 );
 
-// Filter Chart Types Actions
 export const filterChartTypes = createAction(
-  '[Chart Type] Filter',
+  '[Chart Type] Filter Chart Types',
   props<{ range: RangeType }>()
 );
 export const resetFilteredChartTypes = createAction(

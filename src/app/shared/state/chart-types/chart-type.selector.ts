@@ -28,3 +28,8 @@ export const selectFilteredGraphValues = createSelector(
   selectChartTypesState,
   (state) => state.filteredGraphValues
 );
+
+export const selectFilterRange = createSelector(
+  selectChartTypesState,
+  (state) => state.filterRange
+);

@@ -10,10 +10,11 @@ import { Store } from '@ngrx/store';
 import {
   selectAllChartTypes,
   selectChartTypesLoadingStatus,
+  selectFilterRange,
   selectFilteredGraphValues,
   selectGraphValues,
 } from 'src/app/shared/state/chart-types/chart-type.selector';
-import { RangeType, ViewMode } from './view-mode.model';
+import { ViewMode } from './view-mode.model';
 
 @Component({
   selector: 'app-view-mode',
@@ -25,31 +26,12 @@ export class ViewModeComponent implements OnInit {
   allChartTypesStatus$ = this.store.select(selectChartTypesLoadingStatus);
   graphValues$ = this.store.select(selectGraphValues);
   filteredGraphValues$ = this.store.select(selectFilteredGraphValues);
-
-  rangeValues: RangeType = {
-    start: null,
-    end: null,
-  };
-
-  handleDateChange(range: RangeType) {
-    this.rangeValues = range;
-    this.store.dispatch(filterChartTypes({ range }));
-  }
-
-  resetDateRange() {
-    this.rangeValues = {
-      start: null,
-      end: null,
-    };
-
-    this.store.dispatch(resetFilteredChartTypes());
-  }
+  filterRange$ = this.store.select(selectFilterRange);
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.graphValues$.subscribe((data) => {
-      // @ts-ignore
       this.chartTypesList$ = this.store.select(selectAllChartTypes).pipe(
         map((chartTypes) => {
           return formatData([...chartTypes], data);

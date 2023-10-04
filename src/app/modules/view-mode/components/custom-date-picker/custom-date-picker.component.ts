@@ -10,8 +10,14 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
+import { CommonModule, DatePipe, JsonPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { Store } from '@ngrx/store';
+import {
+  filterChartTypes,
+  resetFilteredChartTypes,
+} from '../../../../shared/state/chart-types/chart-type.action';
+import { selectFilterRange } from '../../../../shared/state/chart-types/chart-type.selector';
 
 type DateChangeEvent = {
   start?: Date | null;
@@ -28,8 +34,8 @@ type DateChangeEvent = {
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
-    JsonPipe,
     MatButtonModule,
+    CommonModule,
   ],
 })
 export class CustomDatePickerComponent {
@@ -38,12 +44,23 @@ export class CustomDatePickerComponent {
     end: new FormControl<Date | null>(null),
   });
 
-  @Output() dateChange = new EventEmitter<DateChangeEvent>();
+  filterRange$ = this.store.select(selectFilterRange);
+
+  constructor(private store: Store) {}
 
   onApply() {
-    const start = this.range.get('start')?.value;
-    const end = this.range.get('end')?.value;
+    this.store.dispatch(
+      filterChartTypes({
+        range: {
+          start: this.range.get('start')?.value,
+          end: this.range.get('end')?.value,
+        },
+      })
+    );
+  }
 
-    this.dateChange.emit({ start, end });
+  resetDateRange() {
+    this.store.dispatch(resetFilteredChartTypes());
+    this.range.reset();
   }
 }

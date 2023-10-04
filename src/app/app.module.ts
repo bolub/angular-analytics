@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { CustomDatePickerComponent } from './shared/components/custom-date-picker/custom-date-picker.component';
+import { CustomDatePickerComponent } from './modules/view-mode/components/custom-date-picker/custom-date-picker.component';
 import { GraphDisplayComponent } from './modules/view-mode/components/graph-display/graph-display.component';
 import { PageHeaderComponent } from './shared/components/page-header/page-header.component';
 import { GraphContentComponent } from './modules/settings/components/graph-content/graph-content.component';

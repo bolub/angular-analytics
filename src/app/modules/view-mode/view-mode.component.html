@@ -1,17 +1,12 @@
 <app-page-header title="Analytics" />
 
-<div class="flex gap-2">
-  <span class="mt-5">Filter by:</span>
+<app-custom-date-picker />
 
-  <app-custom-date-picker
-    (dateChange)="handleDateChange($event)"
-  ></app-custom-date-picker>
-</div>
-
-<button
+<!-- <button
   [ngClass]="rangeValues.start ? 'block' : 'hidden'"
   class="mt-2 text-sm bg-gray-200 w-fit py-1 px-4 rounded-full cursor-pointer"
   (click)="resetDateRange()"
+  *ngIf="filterRange$ | async as rangeValues"
 >
   Date range:
   <span class="font-semibold">
@@ -23,7 +18,7 @@
   <span class="font-semibold">
     {{ rangeValues.end | date }}
   </span>
-</button>
+</button> -->
 
 <main class="mt-10">
   <div *ngIf="allChartTypesStatus$ | async as status">

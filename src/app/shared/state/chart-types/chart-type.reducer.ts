@@ -15,6 +15,7 @@ import {
   GraphValue,
 } from 'src/app/modules/settings/settings.model';
 import { filterByDateRange, formatData } from 'src/app/modules/view-mode/utils';
+import { RangeType } from 'src/app/modules/view-mode/view-mode.model';
 
 export type Status = 'pending' | 'loading' | 'error' | 'success';
 
@@ -25,6 +26,7 @@ export interface ChartTypeState {
   allChartTypesLoadingStatus: Status;
   graphValues: GraphValue[];
   filteredGraphValues: GraphValue[];
+  filterRange: RangeType;
 }
 
 export const initialState: ChartTypeState = {
@@ -34,6 +36,10 @@ export const initialState: ChartTypeState = {
   allChartTypesLoadingStatus: 'pending' as Status,
   graphValues: [],
   filteredGraphValues: [],
+  filterRange: {
+    start: null,
+    end: null,
+  },
 };
 
 export const chartTypeReducer = createReducer(
@@ -79,15 +85,16 @@ export const chartTypeReducer = createReducer(
 
   // filter chart types
   on(filterChartTypes, (state, { range }) => {
-    // console.log(range);
-    // console.log(filterByDateRange([...state.graphValues], range));
-
-    const t = filterByDateRange([...state.graphValues], range);
+    const filteredGraphValues = filterByDateRange(
+      [...state.graphValues],
+      range
+    );
 
     return {
       ...state,
-      filteredGraphValues: t,
-      chartTypes: formatData([...state.allChartTypes], t),
+      filteredGraphValues: filteredGraphValues,
+      chartTypes: formatData([...state.allChartTypes], filteredGraphValues),
+      filterRange: range,
     };
   }),
 
@@ -95,6 +102,10 @@ export const chartTypeReducer = createReducer(
     return {
       ...state,
       filteredGraphValues: state.graphValues,
+      filterRange: {
+        start: null,
+        end: null,
+      },
     };
   })
 );

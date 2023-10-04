@@ -24,6 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ChartTypeEffects } from './shared/state/chart-types/chart-type.effects';
 import { chartTypeReducer } from './shared/state/chart-types/chart-type.reducer';
 import { LoaderComponent } from './shared/components/loader/loader.component';
+import { EmptyComponent } from './shared/components/empty/empty.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
     PageHeaderComponent,
     GraphContentComponent,
     LoaderComponent,
+    EmptyComponent,
   ],
   imports: [
     BrowserModule,

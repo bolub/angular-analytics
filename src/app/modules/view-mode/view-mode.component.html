@@ -2,18 +2,25 @@
 
 <app-custom-date-picker />
 
-<main class="mt-10">
-  <div *ngIf="allChartTypesStatus$ | async as status">
-    <app-loader [status]="status" />
-  </div>
+<ng-container *ngIf="data$ | async as data">
+  <main class="mt-10">
+    <app-loader [status]="data.status" />
 
-  <div
-    class="grid grid-cols-1 md:grid-cols-2 gap-10"
-    *ngIf="allChartTypesForViewMode$ | async as chartTypesForViewModeList"
-  >
-    <app-graph-display
-      *ngFor="let chartTypesForViewMode of chartTypesForViewModeList"
-      [data]="chartTypesForViewMode"
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 gap-10"
+      *ngIf="data.allChartTypesForViewMode"
+    >
+      <app-graph-display
+        *ngFor="let chartTypesForViewMode of data.allChartTypesForViewMode"
+        [data]="chartTypesForViewMode"
+      />
+    </div>
+
+    <app-empty
+      *ngIf="
+        data.status === 'success' && data.allChartTypesForViewMode.length === 0
+      "
+      title="No data available"
     />
-  </div>
-</main>
+  </main>
+</ng-container>

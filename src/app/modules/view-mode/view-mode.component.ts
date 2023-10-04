@@ -1,50 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { MockService } from '../../core/services/mock.service';
-import { ChartTypesService } from '../../core/services/chart-types.service';
-import { map } from 'rxjs';
-import { filterByDateRange, formatData } from './utils';
-import { GraphValue } from '../settings/settings.model';
-import { loadChartTypes } from 'src/app/shared/state/chart-types/chart-type.action';
+import { Observable, map } from 'rxjs';
+import { formatData } from './utils';
+import {
+  filterCharts,
+  loadChartTypes,
+  resetFilteredCharts,
+} from 'src/app/shared/state/chart-types/chart-type.action';
 import { Store } from '@ngrx/store';
 import {
   selectAllChartTypes,
   selectChartTypesLoadingStatus,
+  selectFilteredGraphValues,
+  selectGraphValues,
 } from 'src/app/shared/state/chart-types/chart-type.selector';
-
-export type RangeType = { start?: Date | null; end?: Date | null };
+import { RangeType, ViewMode } from './view-mode.model';
 
 @Component({
   selector: 'app-view-mode',
   templateUrl: './view-mode.component.html',
 })
 export class ViewModeComponent implements OnInit {
-  // @ts-ignore
-  chartTypesList$ = this.store.select(selectAllChartTypes).pipe(
-    map((chartTypes) => {
-      return formatData([...chartTypes], this.graphValues);
-    })
-  );
+  chartTypesList$!: Observable<ViewMode[]>;
 
   // @ts-ignore
   allChartTypesStatus$ = this.store.select(selectChartTypesLoadingStatus);
+
+  // @ts-ignore
+  graphValues$ = this.store.select(selectGraphValues);
+
+  // @ts-ignore
+  filteredGraphValues$ = this.store.select(selectFilteredGraphValues);
 
   rangeValues: RangeType = {
     start: null,
     end: null,
   };
 
-  graphValues: GraphValue[] = [];
-
   handleDateChange(range: RangeType) {
     this.rangeValues = range;
-
-    const newGraphValues = filterByDateRange([...this.graphValues], range);
-
-    this.chartTypesList$ = this.chartTypesService.getChartTypes$.pipe(
-      map((chartTypes) => {
-        return formatData([...chartTypes.documents], newGraphValues);
-      })
-    );
+    this.store.dispatch(filterCharts({ range }));
   }
 
   resetDateRange() {
@@ -53,23 +47,21 @@ export class ViewModeComponent implements OnInit {
       end: null,
     };
 
-    this.graphValues = this.mockService.generateGraphData();
-
-    this.chartTypesList$ = this.chartTypesService.getChartTypes$.pipe(
-      map((chartTypes) => {
-        return formatData([...chartTypes.documents], this.graphValues);
-      })
-    );
+    this.store.dispatch(resetFilteredCharts());
   }
 
-  constructor(
-    private mockService: MockService,
-    private chartTypesService: ChartTypesService,
-    private store: Store
-  ) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.graphValues = this.mockService.generateGraphData();
+    this.graphValues$.subscribe((data) => {
+      // @ts-ignore
+      this.chartTypesList$ = this.store.select(selectAllChartTypes).pipe(
+        map((chartTypes) => {
+          return formatData([...chartTypes], data);
+        })
+      );
+    });
+
     this.store.dispatch(loadChartTypes());
   }
 }

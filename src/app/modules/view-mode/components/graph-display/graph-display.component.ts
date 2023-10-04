@@ -44,6 +44,7 @@ export class GraphDisplayComponent implements OnInit {
       title: {
         text: this.data.title,
       },
+      colors: [this.data.color],
       series: [
         {
           data: this.formatData(),

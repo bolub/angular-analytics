@@ -6,7 +6,7 @@ export const selectChartTypes = (state: AppState) => state.chartTypes;
 
 export const selectAllChartTypes = createSelector(
   selectChartTypes,
-  (state: ChartTypeState) => state.chartTypes
+  (state: ChartTypeState) => state.allChartTypes
 );
 
 export const selectChartTypeStatus = createSelector(
@@ -17,4 +17,14 @@ export const selectChartTypeStatus = createSelector(
 export const selectChartTypesLoadingStatus = createSelector(
   selectChartTypes,
   (state: ChartTypeState) => state.allChartTypesLoadingStatus
+);
+
+export const selectGraphValues = createSelector(
+  selectChartTypes,
+  (state: ChartTypeState) => state.filteredGraphValues
+);
+
+export const selectFilteredGraphValues = createSelector(
+  selectChartTypes,
+  (state: ChartTypeState) => state.filteredGraphValues
 );

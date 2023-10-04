@@ -1,5 +1,5 @@
 import { ChartTypeFull, GraphValue } from '../settings/settings.model';
-import { RangeType } from './view-mode.component';
+import { RangeType } from './view-mode.model';
 
 export function formatData(
   chartTypesList: ChartTypeFull[],

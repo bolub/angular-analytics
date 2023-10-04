@@ -9,7 +9,13 @@
   <mat-date-range-picker #picker></mat-date-range-picker>
 </mat-form-field>
 
-<button class="ml-4" mat-flat-button color="primary" (click)="onApply()">
+<button
+  class="ml-4"
+  mat-flat-button
+  color="primary"
+  (click)="onApply()"
+  [disabled]="!range.get('start')?.value || !range.get('end')?.value"
+>
   Apply
 </button>
 

@@ -23,12 +23,19 @@ export class ChartTypesService {
     }),
   };
 
+  getChartTypes() {
+    return this.http.get<{ documents: ChartTypeFull[] }>(
+      this.httpUrl,
+      this.httpOptions
+    );
+  }
+
   getChartTypes$ = this.http
     .get<{ documents: ChartTypeFull[] }>(this.httpUrl, this.httpOptions)
     .pipe(shareReplay(1));
 
-  createChartType(ct: ChartType): Observable<any> {
-    return this.http.post<any>(
+  createChartType(ct: ChartType) {
+    return this.http.post<ChartTypeFull>(
       this.httpUrl,
       {
         documentId: this.mockService.generateUniqueId(),

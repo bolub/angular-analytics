@@ -1,19 +1,22 @@
-<app-page-header title="Settings">
-  <div class="my-auto ml-auto">
-    <app-new-chart />
-  </div>
-</app-page-header>
+<ng-container *ngIf="data$ | async as data">
+  <app-page-header title="Settings">
+    <div class="my-auto ml-auto">
+      <app-new-chart />
+    </div>
+  </app-page-header>
 
-<div *ngIf="allChartTypesStatus$ | async as status">
-  <app-loader [status]="status" />
-</div>
-
-<div
-  *ngIf="allChartTypes$ | async as allChartTypes"
-  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
->
-  <app-graph-content
-    *ngFor="let chartType of allChartTypes"
-    [data]="chartType"
+  <app-loader
+    *ngIf="data.allChartTypesStatus"
+    [status]="data.allChartTypesStatus"
   />
-</div>
+
+  <div
+    *ngIf="data.allChartTypes"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+  >
+    <app-graph-content
+      *ngFor="let chartType of data.allChartTypes"
+      [data]="chartType"
+    />
+  </div>
+</ng-container>

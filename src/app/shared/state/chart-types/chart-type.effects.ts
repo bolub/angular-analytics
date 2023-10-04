@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { from, of } from 'rxjs';
-import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { catchError, switchMap, withLatestFrom } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
 
@@ -9,13 +9,15 @@ import * as chartTypeActions from './chart-type.action';
 import { ChartTypesService } from 'src/app/core/services/chart-types.service';
 import { selectAllChartTypes } from './chart-type.selector';
 import { AppState } from '../app.state';
+import { MockService } from 'src/app/core/services/mock.service';
 
 @Injectable()
 export class ChartTypeEffects {
   constructor(
     private actions$: Actions,
     private chartTypeService: ChartTypesService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private mockService: MockService
   ) {}
 
   loadChartTypes$ = createEffect(() =>
@@ -23,11 +25,16 @@ export class ChartTypeEffects {
       ofType(chartTypeActions.loadChartTypes),
       switchMap(() =>
         this.chartTypeService.getChartTypes$.pipe(
-          map((data) =>
-            chartTypeActions.loadChartTypesSuccess({
-              chartTypes: data.documents,
-            })
-          ),
+          switchMap((data) => {
+            return [
+              chartTypeActions.loadChartTypesSuccess({
+                chartTypes: data.documents,
+              }),
+              chartTypeActions.loadGraphData({
+                data: this.mockService.generateGraphData(),
+              }),
+            ];
+          }),
           catchError((error) =>
             of(chartTypeActions.loadChartTypesFailure({ error }))
           )
@@ -62,4 +69,17 @@ export class ChartTypeEffects {
       )
     )
   );
+
+  // filterCharts$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(chartTypeActions.filterCharts),
+  //     switchMap(() =>
+  //       this.chartTypeService.getChartTypes$.pipe(
+  //         switchMap(() => {
+  //           return [chartTypeActions.loadChartTypes()];
+  //         })
+  //       )
+  //     )
+  //   )
+  // );
 }

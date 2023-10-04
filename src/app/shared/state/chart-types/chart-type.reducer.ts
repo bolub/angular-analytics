@@ -3,26 +3,37 @@ import {
   createChartType,
   createChartTypeError,
   createChartTypeSuccess,
+  filterCharts,
   loadChartTypes,
   loadChartTypesFailure,
   loadChartTypesSuccess,
+  loadGraphData,
+  resetFilteredCharts,
 } from './chart-type.action';
-import { ChartTypeFull } from 'src/app/modules/settings/settings.model';
+import {
+  ChartTypeFull,
+  GraphValue,
+} from 'src/app/modules/settings/settings.model';
+import { filterByDateRange, formatData } from 'src/app/modules/view-mode/utils';
 
 export type Status = 'pending' | 'loading' | 'error' | 'success';
 
 export interface ChartTypeState {
-  chartTypes: ChartTypeFull[];
+  allChartTypes: ChartTypeFull[];
   error: string;
   status: Status;
   allChartTypesLoadingStatus: Status;
+  graphValues: GraphValue[];
+  filteredGraphValues: GraphValue[];
 }
 
 export const initialState: ChartTypeState = {
-  chartTypes: [],
+  allChartTypes: [],
   error: '',
   status: 'pending' as Status,
   allChartTypesLoadingStatus: 'pending' as Status,
+  graphValues: [],
+  filteredGraphValues: [],
 };
 
 export const chartTypeReducer = createReducer(
@@ -51,11 +62,39 @@ export const chartTypeReducer = createReducer(
   on(loadChartTypesSuccess, (state, payload) => ({
     ...state,
     allChartTypesLoadingStatus: 'success' as Status,
-    chartTypes: payload.chartTypes,
+    allChartTypes: payload.chartTypes,
   })),
   on(loadChartTypesFailure, (state, payload) => ({
     ...state,
     allChartTypesLoadingStatus: 'error' as Status,
     error: payload.error,
-  }))
+  })),
+
+  // load graph value
+  on(loadGraphData, (state, payload) => ({
+    ...state,
+    graphValues: payload.data,
+    filteredGraphValues: payload.data,
+  })),
+
+  // filter chart types
+  on(filterCharts, (state, { range }) => {
+    // console.log(range);
+    // console.log(filterByDateRange([...state.graphValues], range));
+
+    const t = filterByDateRange([...state.graphValues], range);
+
+    return {
+      ...state,
+      filteredGraphValues: t,
+      chartTypes: formatData([...state.allChartTypes], t),
+    };
+  }),
+
+  on(resetFilteredCharts, (state) => {
+    return {
+      ...state,
+      filteredGraphValues: state.graphValues,
+    };
+  })
 );

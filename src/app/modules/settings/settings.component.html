@@ -19,4 +19,11 @@
       [data]="chartType"
     />
   </div>
+
+  <app-empty
+    *ngIf="
+      data.allChartTypesStatus === 'success' && data.allChartTypes.length === 0
+    "
+    title="No data available"
+  />
 </ng-container>

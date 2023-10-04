@@ -58,11 +58,7 @@ export class ChartTypeEffects {
           })
         ).pipe(
           switchMap((chartType) => {
-            // console.log(chartType);
-            return [
-              chartTypeActions.createChartTypeSuccess({ chartType }),
-              chartTypeActions.loadChartTypes(),
-            ];
+            return [chartTypeActions.createChartTypeSuccess({ chartType })];
           }),
           catchError((error) =>
             of(chartTypeActions.createChartTypeError({ error }))

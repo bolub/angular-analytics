@@ -8,7 +8,7 @@
 
     <div
       class="grid grid-cols-1 md:grid-cols-2 gap-10"
-      *ngIf="data.allChartTypesForViewMode"
+      *ngIf="data.allChartTypesForViewMode && data.status === 'success'"
     >
       <app-graph-display
         *ngFor="let chartTypesForViewMode of data.allChartTypesForViewMode"

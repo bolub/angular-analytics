@@ -30,9 +30,11 @@ export class ChartTypesService {
     );
   }
 
-  getChartTypes$ = this.http
-    .get<{ documents: ChartTypeFull[] }>(this.httpUrl, this.httpOptions)
-    .pipe(shareReplay(1));
+  getChartTypes$ = this.http.get<{ documents: ChartTypeFull[] }>(
+    this.httpUrl,
+    this.httpOptions
+  );
+  // .pipe(shareReplay(1));
 
   createChartType(ct: ChartType) {
     return this.http.post<ChartTypeFull>(

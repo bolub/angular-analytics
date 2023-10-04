@@ -3,6 +3,9 @@ import {
   createChartType,
   createChartTypeError,
   createChartTypeSuccess,
+  deleteChartType,
+  deleteChartTypeError,
+  deleteChartTypeSuccess,
   filterViewModeData,
   loadChartTypes,
   loadChartTypesFailure,
@@ -14,6 +17,7 @@ import { RangeType, ViewMode } from 'src/app/modules/view-mode/view-mode.model';
 import { filterValidItemsInRange } from 'src/app/modules/view-mode/utils';
 
 export type Status = 'pending' | 'loading' | 'error' | 'success';
+export type ActionType = 'create' | 'delete' | 'update';
 
 export interface ChartTypeState {
   allChartTypes: ChartTypeFull[];
@@ -21,6 +25,7 @@ export interface ChartTypeState {
   originalAllChartTypesForViewMode: ViewMode[];
   error: string;
   status: Status;
+  actionType?: ActionType;
   allChartTypesLoadingStatus: Status;
   filterRange: RangeType;
 }
@@ -36,6 +41,7 @@ export const initialChartTypesState: ChartTypeState = {
     start: null,
     end: null,
   },
+  actionType: undefined,
 };
 
 export const chartTypeReducer = createReducer(
@@ -45,15 +51,36 @@ export const chartTypeReducer = createReducer(
   on(createChartType, (state, payload) => ({
     ...state,
     status: 'loading' as Status,
+    actionType: 'create' as ActionType,
   })),
   on(createChartTypeSuccess, (state, payload) => ({
     ...state,
     status: 'success' as Status,
+    actionType: undefined,
   })),
   on(createChartTypeError, (state, payload) => ({
     ...state,
     error: payload.error,
     status: 'error' as Status,
+    actionType: undefined,
+  })),
+
+  // delete chart types
+  on(deleteChartType, (state, payload) => ({
+    ...state,
+    status: 'loading' as Status,
+    actionType: 'delete' as ActionType,
+  })),
+  on(deleteChartTypeSuccess, (state, payload) => ({
+    ...state,
+    status: 'success' as Status,
+    actionType: undefined,
+  })),
+  on(deleteChartTypeError, (state, payload) => ({
+    ...state,
+    error: payload.error,
+    status: 'error' as Status,
+    actionType: undefined,
   })),
 
   // load chart types

@@ -19,6 +19,11 @@ export const selectChartTypeStatus = createSelector(
   (state) => state.status
 );
 
+export const selectActionType = createSelector(
+  selectChartTypesState,
+  (state) => state.actionType
+);
+
 export const selectChartTypesLoadingStatus = createSelector(
   selectChartTypesState,
   (state) => state.allChartTypesLoadingStatus

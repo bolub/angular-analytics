@@ -4,14 +4,23 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { Store } from '@ngrx/store';
-import { createChartType } from 'src/app/shared/state/chart-types/chart-type.action';
-import { selectChartTypeStatus } from 'src/app/shared/state/chart-types/chart-type.selector';
-import { Status } from 'src/app/shared/state/chart-types/chart-type.reducer';
+import {
+  createChartType,
+  loadChartTypes,
+} from 'src/app/shared/state/chart-types/chart-type.action';
+import {
+  selectActionType,
+  selectChartTypeStatus,
+} from 'src/app/shared/state/chart-types/chart-type.selector';
+import {
+  ActionType,
+  Status,
+} from 'src/app/shared/state/chart-types/chart-type.reducer';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { Subscription } from 'rxjs';
+import { Subscription, combineLatest, firstValueFrom } from 'rxjs';
 import { ChartType } from '../../../settings.model';
 
 interface ChartTypeSelector {
@@ -30,9 +39,7 @@ interface ChartTypeSelector {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    NgFor,
-    NgIf,
-    AsyncPipe,
+    CommonModule,
     MatSnackBarModule,
   ],
 })
@@ -45,13 +52,12 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
     { value: 'spline', viewValue: 'Spline' },
   ];
 
-  title!: string;
-  color!: string;
+  title = '';
+  color = '';
   selectedType!: ChartType['selectedType'];
 
-  statusSubscription$ = this.store.select(selectChartTypeStatus);
   status!: Status;
-  subscription!: Subscription;
+  dataSubscription$!: Subscription;
 
   constructor(
     private store: Store,
@@ -60,19 +66,24 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.statusSubscription$.subscribe((data) => {
-      this.status = data;
+    this.dataSubscription$ = combineLatest({
+      status: this.store.select(selectChartTypeStatus),
+      actionType: this.store.select(selectActionType),
+    }).subscribe((data) => {
+      const { status, actionType } = data;
+      this.status = status;
 
-      if (this.status === 'success') {
+      if (status === 'success' && actionType === 'create') {
         this.dialog.closeAll();
-        this.openSnackBar('Chart added successfully');
+        this._snackBar.open('Chart added successfully', 'close');
+        this.store.dispatch(loadChartTypes());
       }
     });
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.dataSubscription$) {
+      this.dataSubscription$.unsubscribe();
     }
   }
 
@@ -84,9 +95,5 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
         selectedType: this.selectedType,
       })
     );
-  }
-
-  openSnackBar(message: string) {
-    this._snackBar.open(message, 'close');
   }
 }

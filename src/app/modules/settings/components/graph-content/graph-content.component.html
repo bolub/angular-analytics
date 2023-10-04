@@ -27,7 +27,7 @@
       color="warn"
       aria-label="Example icon button with a delete icon"
       (click)="onDelete()"
-      [disabled]="loading"
+      [disabled]="status === 'loading'"
     >
       <mat-icon>delete</mat-icon>
     </button>

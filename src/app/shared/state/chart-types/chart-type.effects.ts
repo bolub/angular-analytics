@@ -68,16 +68,20 @@ export class ChartTypeEffects {
     )
   );
 
-  // filterCharts$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(chartTypeActions.filterCharts),
-  //     switchMap(() =>
-  //       this.chartTypeService.getChartTypes$.pipe(
-  //         switchMap(() => {
-  //           return [chartTypeActions.loadChartTypes()];
-  //         })
-  //       )
-  //     )
-  //   )
-  // );
+  deleteChartType$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(chartTypeActions.deleteChartType),
+      withLatestFrom(this.store.select(selectAllChartTypes)),
+      switchMap(([action]) =>
+        from(this.chartTypeService.deleteChartType(action.$id)).pipe(
+          switchMap((chartType) => {
+            return [chartTypeActions.deleteChartTypeSuccess({ chartType })];
+          }),
+          catchError((error) =>
+            of(chartTypeActions.deleteChartTypeError({ error }))
+          )
+        )
+      )
+    )
+  );
 }

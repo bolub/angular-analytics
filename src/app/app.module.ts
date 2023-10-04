@@ -33,7 +33,6 @@ import { EmptyComponent } from './shared/components/empty/empty.component';
     AppshellComponent,
     ViewModeComponent,
     PageHeaderComponent,
-    GraphContentComponent,
     LoaderComponent,
     EmptyComponent,
   ],
@@ -51,6 +50,8 @@ import { EmptyComponent } from './shared/components/empty/empty.component';
     NewChartComponent,
     GraphDisplayComponent,
     HttpClientModule,
+    GraphContentComponent,
+
     StoreModule.forRoot({
       chartTypes: chartTypeReducer,
     }),

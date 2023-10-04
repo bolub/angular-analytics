@@ -20,9 +20,19 @@ export const createChartTypeError = createAction(
   props<{ error: any }>()
 );
 
+// delete actions
 export const deleteChartType = createAction(
   '[Chart Type] Delete',
   props<{ $id: string }>()
+);
+
+export const deleteChartTypeSuccess = createAction(
+  '[Chart Type] Delete Success',
+  props<{ chartType: ChartType }>()
+);
+export const deleteChartTypeError = createAction(
+  '[Chart Type] Delete Error',
+  props<{ error: any }>()
 );
 
 // loading actions
@@ -41,6 +51,7 @@ export const loadGraphData = createAction(
   props<{ data: GraphValue[] }>()
 );
 
+// filter actions
 export const filterViewModeData = createAction(
   '[Chart Type] Filter View Mode Data',
   props<{ range: RangeType }>()

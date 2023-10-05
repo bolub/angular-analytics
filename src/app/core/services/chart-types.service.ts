@@ -5,6 +5,7 @@ import {
   ChartType,
   ChartTypeFull,
 } from 'src/app/modules/settings/settings.model';
+import { shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,11 +29,9 @@ export class ChartTypesService {
     );
   }
 
-  getChartTypes$ = this.http.get<{ documents: ChartTypeFull[] }>(
-    this.httpUrl,
-    this.httpOptions
-  );
-  // .pipe(shareReplay(1));
+  getChartTypes$ = this.http
+    .get<{ documents: ChartTypeFull[] }>(this.httpUrl, this.httpOptions)
+    .pipe(shareReplay(1));
 
   createChartType(ct: ChartType) {
     return this.http.post<ChartTypeFull>(

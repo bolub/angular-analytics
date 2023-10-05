@@ -26,3 +26,5 @@ button{
 .mat-mdc-fab, .mat-mdc-mini-fab{
     box-shadow: none !important;
 }
+
+/* .mdc-text-field--filled { add border radius } */

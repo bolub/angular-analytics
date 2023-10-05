@@ -15,9 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { CustomDatePickerComponent } from './modules/view-mode/components/custom-date-picker/custom-date-picker.component';
 import { GraphDisplayComponent } from './modules/view-mode/components/graph-display/graph-display.component';
 import { PageHeaderComponent } from './shared/components/page-header/page-header.component';
-import { GraphContentComponent } from './modules/settings/components/graph-content/graph-content.component';
-import { NewChartDialogComponent } from './modules/settings/components/new-chart/new-chart-dialog/new-chart-dialog.component';
-import { NewChartComponent } from './modules/settings/components/new-chart/new-chart.component';
+import { GraphContentComponent } from './modules/settings/components/chart-type-display/chart-type-display.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -25,6 +23,9 @@ import { ChartTypeEffects } from './shared/state/chart-types/chart-type.effects'
 import { chartTypeReducer } from './shared/state/chart-types/chart-type.reducer';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { EmptyComponent } from './shared/components/empty/empty.component';
+import { ChartTypeDialogComponent } from './modules/settings/components/chart-type-dialog/chart-type-dialog.component';
+import { EditChartTypeDialogComponent } from './modules/settings/components/chart-type-dialog/edit-chart-type-dialog/edit-chart-type-dialog.component';
+import { NewChartDialogComponent } from './modules/settings/components/chart-type-dialog/new-chart-dialog/new-chart-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { EmptyComponent } from './shared/components/empty/empty.component';
     PageHeaderComponent,
     LoaderComponent,
     EmptyComponent,
+    ChartTypeDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,11 +49,10 @@ import { EmptyComponent } from './shared/components/empty/empty.component';
     MatListModule,
     CustomDatePickerComponent,
     NewChartDialogComponent,
-    NewChartComponent,
     GraphDisplayComponent,
     HttpClientModule,
     GraphContentComponent,
-
+    EditChartTypeDialogComponent,
     StoreModule.forRoot({
       chartTypes: chartTypeReducer,
     }),

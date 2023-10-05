@@ -17,11 +17,11 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { NewChartDialogComponent } from '../new-chart/new-chart-dialog/new-chart-dialog.component';
+import { EditChartTypeDialogComponent } from '../chart-type-dialog/edit-chart-type-dialog/edit-chart-type-dialog.component';
 
 @Component({
-  selector: 'app-graph-content',
-  templateUrl: './graph-content.component.html',
+  selector: 'app-chart-type-display',
+  templateUrl: './chart-type-display.component.html',
   standalone: true,
   imports: [MatSnackBarModule, CommonModule, MatIconModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -54,7 +54,7 @@ export class GraphContentComponent {
         data: this.data,
       })
     );
-    this.dialog.open(NewChartDialogComponent);
+    this.dialog.open(EditChartTypeDialogComponent);
   }
 
   ngOnInit(): void {

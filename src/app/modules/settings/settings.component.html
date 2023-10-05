@@ -1,6 +1,10 @@
 <app-page-header title="Settings">
   <div class="my-auto ml-auto">
-    <app-new-chart />
+    <!-- <app-new-chart /> -->
+
+    <button (click)="openDialog()" mat-flat-button color="primary">
+      New chart
+    </button>
   </div>
 </app-page-header>
 
@@ -14,7 +18,7 @@
     *ngIf="data.allChartTypes && data.allChartTypesStatus === 'success'"
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
   >
-    <app-graph-content
+    <app-chart-type-display
       *ngFor="let chartType of data.allChartTypes; trackBy: trackByFn"
       [data]="chartType"
     />

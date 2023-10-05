@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -7,10 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { Store } from '@ngrx/store';
-import {
-  createChartType,
-  updateChartType,
-} from 'src/app/shared/state/chart-types/chart-type.action';
+import { updateChartType } from 'src/app/shared/state/chart-types/chart-type.action';
 import {
   selectActionType,
   selectChartTypeStatus,
@@ -27,8 +24,8 @@ interface ChartTypeSelector {
 }
 
 @Component({
-  selector: 'app-new-chart-dialog',
-  templateUrl: './new-chart-dialog.component.html',
+  selector: 'app-edit-chart-type-dialog',
+  templateUrl: './edit-chart-type-dialog.component.html',
   standalone: true,
   imports: [
     MatDialogModule,
@@ -41,7 +38,7 @@ interface ChartTypeSelector {
     MatSnackBarModule,
   ],
 })
-export class NewChartDialogComponent implements OnInit, OnDestroy {
+export class EditChartTypeDialogComponent {
   chartTypes: ChartTypeSelector[] = [
     { value: 'bar', viewValue: 'Bar' },
     { value: 'line', viewValue: 'Line' },
@@ -88,13 +85,6 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
 
           window.location.reload();
         }
-      } else {
-        if (status === 'success' && actionType === 'create') {
-          this.dialog.closeAll();
-          this._snackBar.open('Chart added successfully', 'close');
-
-          window.location.reload();
-        }
       }
     });
   }
@@ -107,16 +97,6 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
 
   trackByFn(index: number, item: ChartTypeSelector) {
     return item.value;
-  }
-
-  onAddChart() {
-    this.store.dispatch(
-      createChartType({
-        title: this.title,
-        color: this.color,
-        selectedType: this.selectedType,
-      })
-    );
   }
 
   onUpdateChart() {

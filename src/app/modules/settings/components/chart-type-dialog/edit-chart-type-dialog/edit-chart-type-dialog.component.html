@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>
-  {{ type === "newChart" ? "New chart" : "Update chart" }}
+  {{ "Update chart" }}
 </h2>
 
 <mat-dialog-content class="mat-typography md:w-[450px]">
@@ -35,9 +35,9 @@
     mat-flat-button
     color="primary"
     cdkFocusInitial
-    (click)="type === 'newChart' ? onAddChart() : onUpdateChart()"
+    (click)="onUpdateChart()"
     [disabled]="!title || !color || !selectedType || status === 'loading'"
   >
-    {{ type === "newChart" ? "Add chart" : "Update chart" }}
+    {{ "Update chart" }}
   </button>
 </mat-dialog-actions>

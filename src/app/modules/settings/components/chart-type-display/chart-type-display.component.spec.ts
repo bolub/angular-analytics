@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GraphContentComponent } from './graph-content.component';
+import { GraphContentComponent } from './chart-type-display.component';
 
 describe('GraphContentComponent', () => {
   let component: GraphContentComponent;
@@ -8,7 +8,7 @@ describe('GraphContentComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [GraphContentComponent]
+      declarations: [GraphContentComponent],
     });
     fixture = TestBed.createComponent(GraphContentComponent);
     component = fixture.componentInstance;

@@ -1,4 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
 import {
@@ -15,6 +20,7 @@ export type Graph = ChartTypeFull & {
   templateUrl: './graph-display.component.html',
   standalone: true,
   imports: [HighchartsChartModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 //

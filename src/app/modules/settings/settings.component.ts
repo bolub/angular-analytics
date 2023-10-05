@@ -6,6 +6,7 @@ import {
 } from 'src/app/shared/state/chart-types/chart-type.selector';
 import { loadChartTypes } from 'src/app/shared/state/chart-types/chart-type.action';
 import { combineLatest } from 'rxjs';
+import { ChartTypeFull } from './settings.model';
 
 @Component({
   selector: 'app-settings',
@@ -21,5 +22,9 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(loadChartTypes());
+  }
+
+  trackByFn(index: number, item: ChartTypeFull) {
+    return item.$id;
   }
 }

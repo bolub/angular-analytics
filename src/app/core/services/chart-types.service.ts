@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MockService } from './mock.service';
-import { Observable, shareReplay } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import {
   ChartType,
   ChartTypeFull,
@@ -14,12 +12,12 @@ import {
 export class ChartTypesService {
   constructor(private http: HttpClient, private mockService: MockService) {}
 
-  httpUrl = environment.httpUrl;
+  httpUrl = import.meta.env['NG_APP_API_URL'];
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-Appwrite-Project': environment.projectKey,
-      'X-Appwrite-Key': environment.jwtKey,
+      'X-Appwrite-Project': import.meta.env['NG_APP_PROJECT_KEY'],
+      'X-Appwrite-Key': import.meta.env['NG_APP_JWT_KEY'],
     }),
   };
 

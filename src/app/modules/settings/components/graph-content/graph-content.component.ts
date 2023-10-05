@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ChartTypeFull } from '../../settings.model';
 import { Store } from '@ngrx/store';
 import {
@@ -24,6 +24,7 @@ import { NewChartDialogComponent } from '../new-chart/new-chart-dialog/new-chart
   templateUrl: './graph-content.component.html',
   standalone: true,
   imports: [MatSnackBarModule, CommonModule, MatIconModule, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GraphContentComponent {
   @Input({ required: true }) data!: ChartTypeFull;

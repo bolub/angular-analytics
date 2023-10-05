@@ -6,6 +6,7 @@ import {
   selectChartTypesLoadingStatus,
 } from 'src/app/shared/state/chart-types/chart-type.selector';
 import { combineLatest } from 'rxjs';
+import { ViewMode } from './view-mode.model';
 
 @Component({
   selector: 'app-view-mode',
@@ -21,5 +22,9 @@ export class ViewModeComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(loadChartTypes());
+  }
+
+  trackByFn(index: number, item: ViewMode) {
+    return item.$id;
   }
 }

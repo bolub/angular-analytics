@@ -13,7 +13,7 @@
       <mat-label>Chart type</mat-label>
       <mat-select [(ngModel)]="selectedType" name="type">
         <mat-option
-          *ngFor="let chartType of chartTypes"
+          *ngFor="let chartType of chartTypes; trackBy: trackByFn"
           [value]="chartType.value"
         >
           {{ chartType.viewValue }}

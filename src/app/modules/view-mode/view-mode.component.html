@@ -11,7 +11,10 @@
       *ngIf="data.allChartTypesForViewMode && data.status === 'success'"
     >
       <app-graph-display
-        *ngFor="let chartTypesForViewMode of data.allChartTypesForViewMode"
+        *ngFor="
+          let chartTypesForViewMode of data.allChartTypesForViewMode;
+          trackBy: trackByFn
+        "
         [data]="chartTypesForViewMode"
       />
     </div>

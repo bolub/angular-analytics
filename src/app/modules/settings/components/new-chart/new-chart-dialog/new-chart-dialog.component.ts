@@ -104,6 +104,10 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
     }
   }
 
+  trackByFn(index: number, item: ChartTypeSelector) {
+    return item.value;
+  }
+
   onAddChart() {
     this.store.dispatch(
       createChartType({

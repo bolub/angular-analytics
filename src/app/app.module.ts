@@ -36,7 +36,6 @@ import { NewChartDialogComponent } from './modules/settings/components/chart-typ
     PageHeaderComponent,
     LoaderComponent,
     EmptyComponent,
-    ChartTypeDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +52,7 @@ import { NewChartDialogComponent } from './modules/settings/components/chart-typ
     HttpClientModule,
     GraphContentComponent,
     EditChartTypeDialogComponent,
+    ChartTypeDialogComponent,
     StoreModule.forRoot({
       chartTypes: chartTypeReducer,
     }),

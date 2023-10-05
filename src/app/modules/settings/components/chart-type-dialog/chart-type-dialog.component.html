@@ -1,1 +1,24 @@
-<p>chart-type-dialog works!</p>
+<form [formGroup]="chartForm" class="flex flex-col gap-2 py-6">
+  <mat-form-field class="w-full">
+    <mat-label>Chart title</mat-label>
+    <input formControlName="title" matInput />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Chart type</mat-label>
+    <mat-select formControlName="selectedType">
+      <mat-option
+        *ngFor="let chartType of chartTypes; trackBy: trackByFn"
+        [value]="chartType.value"
+      >
+        {{ chartType.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>Chart color</mat-label>
+    <input formControlName="color" type="color" matInput />
+    <mat-hint align="end" class="text-sm">Click to select a color</mat-hint>
+  </mat-form-field>
+</form>

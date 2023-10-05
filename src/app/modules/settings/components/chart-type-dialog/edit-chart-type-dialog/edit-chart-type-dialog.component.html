@@ -1,32 +1,7 @@
-<h2 mat-dialog-title>
-  {{ "Update chart" }}
-</h2>
+<h2 mat-dialog-title>Update chart</h2>
 
 <mat-dialog-content class="mat-typography md:w-[450px]">
-  <form class="flex flex-col gap-2 py-6">
-    <mat-form-field class="w-full">
-      <mat-label>Chart title</mat-label>
-      <input [(ngModel)]="title" name="title" matInput />
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Chart type</mat-label>
-      <mat-select [(ngModel)]="selectedType" name="type">
-        <mat-option
-          *ngFor="let chartType of chartTypes; trackBy: trackByFn"
-          [value]="chartType.value"
-        >
-          {{ chartType.viewValue }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="w-full">
-      <mat-label>Chart color</mat-label>
-      <input [(ngModel)]="color" type="color" name="'color" matInput />
-      <mat-hint align="end" class="text-sm"> Click to select a color </mat-hint>
-    </mat-form-field>
-  </form>
+  <app-chart-type-dialog #chartFormComponent />
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
@@ -36,8 +11,10 @@
     color="primary"
     cdkFocusInitial
     (click)="onUpdateChart()"
-    [disabled]="!title || !color || !selectedType || status === 'loading'"
+    [disabled]="
+      status === 'loading' || isButtonDisabled(chartFormComponent.chartForm)
+    "
   >
-    {{ "Update chart" }}
+    Update chart
   </button>
 </mat-dialog-actions>

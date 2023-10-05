@@ -1,30 +1,21 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { Store } from '@ngrx/store';
-import {
-  createChartType,
-  updateChartType,
-} from 'src/app/shared/state/chart-types/chart-type.action';
+import { createChartType } from 'src/app/shared/state/chart-types/chart-type.action';
 import {
   selectActionType,
   selectChartTypeStatus,
-  selectCurrentChartType,
 } from 'src/app/shared/state/chart-types/chart-type.selector';
 import { Status } from 'src/app/shared/state/chart-types/chart-type.reducer';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Subscription, combineLatest } from 'rxjs';
-import { ChartType } from '../../../settings.model';
-
-interface ChartTypeSelector {
-  value: string;
-  viewValue: string;
-}
+import { ChartTypeDialogComponent } from '../chart-type-dialog.component';
 
 @Component({
   selector: 'app-new-chart-dialog',
@@ -33,31 +24,17 @@ interface ChartTypeSelector {
   imports: [
     MatDialogModule,
     MatButtonModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
     CommonModule,
     MatSnackBarModule,
+    ChartTypeDialogComponent,
   ],
 })
 export class NewChartDialogComponent implements OnInit, OnDestroy {
-  chartTypes: ChartTypeSelector[] = [
-    { value: 'bar', viewValue: 'Bar' },
-    { value: 'line', viewValue: 'Line' },
-    { value: 'pie', viewValue: 'Pie' },
-    { value: 'area', viewValue: 'Area' },
-    { value: 'spline', viewValue: 'Spline' },
-  ];
-
-  title = '';
-  color = '';
-  selectedType!: ChartType['selectedType'];
-  type = 'newChart';
-  id = '';
-
   status!: Status;
   dataSubscription$!: Subscription;
+
+  @ViewChild('chartFormComponent')
+  chartFormComponent!: ChartTypeDialogComponent;
 
   constructor(
     private store: Store,
@@ -89,17 +66,19 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
     }
   }
 
-  trackByFn(index: number, item: ChartTypeSelector) {
-    return item.value;
-  }
-
   onAddChart() {
+    const formValues = this.chartFormComponent.chartForm.value;
+
     this.store.dispatch(
       createChartType({
-        title: this.title,
-        color: this.color,
-        selectedType: this.selectedType,
+        title: formValues.title,
+        color: formValues.color,
+        selectedType: formValues.selectedType,
       })
     );
+  }
+
+  isButtonDisabled(form: FormGroup): boolean {
+    return Object.values(form.controls).some((control) => control.value === '');
   }
 }

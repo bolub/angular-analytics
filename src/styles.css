@@ -27,7 +27,7 @@ button{
     box-shadow: none !important;
 }
 
-/* .mdc-text-field--filled { add border radius } */
+/* .mdc-text-field--filled { add border radius 8px } */
 
 .mdc-dialog__title {
     padding: 14px 0 10px 20px !important;

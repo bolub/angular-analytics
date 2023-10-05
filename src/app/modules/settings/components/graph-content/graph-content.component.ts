@@ -69,6 +69,7 @@ export class GraphContentComponent {
         this.dialog.closeAll();
         this._snackBar.open('Chart deleted successfully', 'close');
         this.store.dispatch(loadChartTypes());
+        window.location.reload();
       }
     });
   }

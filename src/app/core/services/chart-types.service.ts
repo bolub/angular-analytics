@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MockService } from './mock.service';
-import { Observable, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {
   ChartType,

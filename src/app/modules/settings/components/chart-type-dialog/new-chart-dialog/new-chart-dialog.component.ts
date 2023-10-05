@@ -1,11 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormGroup, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MatSelectModule } from '@angular/material/select';
 import { Store } from '@ngrx/store';
 import { createChartType } from 'src/app/shared/state/chart-types/chart-type.action';
 import {
@@ -15,7 +12,7 @@ import {
 import { Status } from 'src/app/shared/state/chart-types/chart-type.reducer';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Subscription, combineLatest } from 'rxjs';
-import { ChartTypeDialogComponent } from '../chart-type-dialog.component';
+import { ChartTypeDialogComponent } from '../form-input.component';
 
 @Component({
   selector: 'app-new-chart-dialog',

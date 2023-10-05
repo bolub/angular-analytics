@@ -16,7 +16,7 @@ import {
 import { Status } from 'src/app/shared/state/chart-types/chart-type.reducer';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Subscription, combineLatest } from 'rxjs';
-import { ChartTypeDialogComponent } from '../chart-type-dialog.component';
+import { ChartTypeDialogComponent } from '../form-input.component';
 import { ChartType } from '../../../settings.model';
 
 @Component({

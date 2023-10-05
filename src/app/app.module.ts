@@ -23,7 +23,7 @@ import { ChartTypeEffects } from './shared/state/chart-types/chart-type.effects'
 import { chartTypeReducer } from './shared/state/chart-types/chart-type.reducer';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { EmptyComponent } from './shared/components/empty/empty.component';
-import { ChartTypeDialogComponent } from './modules/settings/components/chart-type-dialog/chart-type-dialog.component';
+import { ChartTypeDialogComponent } from './modules/settings/components/chart-type-dialog/form-input.component';
 import { EditChartTypeDialogComponent } from './modules/settings/components/chart-type-dialog/edit-chart-type-dialog/edit-chart-type-dialog.component';
 import { NewChartDialogComponent } from './modules/settings/components/chart-type-dialog/new-chart-dialog/new-chart-dialog.component';
 

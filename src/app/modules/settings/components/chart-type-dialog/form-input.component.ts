@@ -22,7 +22,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChartType } from '../../settings.model';
 import { Store } from '@ngrx/store';
-import { selectCurrentChartType } from 'src/app/shared/state/chart-types/chart-type.selector';
 
 interface ChartTypeSelector {
   value: string;
@@ -30,8 +29,8 @@ interface ChartTypeSelector {
 }
 
 @Component({
-  selector: 'app-chart-type-dialog',
-  templateUrl: './chart-type-dialog.component.html',
+  selector: 'app-form-input',
+  templateUrl: './form-input.component.html',
   standalone: true,
   imports: [
     MatDialogModule,

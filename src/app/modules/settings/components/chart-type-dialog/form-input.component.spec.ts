@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChartTypeDialogComponent } from './chart-type-dialog.component';
+import { ChartTypeDialogComponent } from './form-input.component';
 
 describe('ChartTypeDialogComponent', () => {
   let component: ChartTypeDialogComponent;
@@ -8,7 +8,7 @@ describe('ChartTypeDialogComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ChartTypeDialogComponent]
+      declarations: [ChartTypeDialogComponent],
     });
     fixture = TestBed.createComponent(ChartTypeDialogComponent);
     component = fixture.componentInstance;

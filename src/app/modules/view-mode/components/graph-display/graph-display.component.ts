@@ -30,7 +30,6 @@ export class GraphDisplayComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
   chartConstructor: string = 'chart';
   chartOptions: Highcharts.Options = {};
-  chartCallback: Highcharts.ChartCallbackFunction = function (chart) {}; // optional function, defaults to null
   updateFlag: boolean = false;
   oneToOneFlag: boolean = true;
   runOutsideAngular: boolean = false;
@@ -47,6 +46,7 @@ export class GraphDisplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.chartOptions = {
+      ...this.chartOptions,
       title: {
         text: this.data.title,
       },

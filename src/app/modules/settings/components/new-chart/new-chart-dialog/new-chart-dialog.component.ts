@@ -9,7 +9,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { Store } from '@ngrx/store';
 import {
   createChartType,
-  loadChartTypes,
   updateChartType,
 } from 'src/app/shared/state/chart-types/chart-type.action';
 import {
@@ -86,13 +85,15 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
         if (status === 'success' && actionType === 'update') {
           this.dialog.closeAll();
           this._snackBar.open('Chart updated successfully', 'close');
-          this.store.dispatch(loadChartTypes());
+
+          window.location.reload();
         }
       } else {
         if (status === 'success' && actionType === 'create') {
           this.dialog.closeAll();
           this._snackBar.open('Chart added successfully', 'close');
-          this.store.dispatch(loadChartTypes());
+
+          window.location.reload();
         }
       }
     });

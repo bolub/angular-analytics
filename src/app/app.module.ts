@@ -26,6 +26,7 @@ import { EmptyComponent } from './shared/components/empty/empty.component';
 import { ChartTypeDialogComponent } from './features/settings/components/chart-type-dialog/form-input.component';
 import { EditChartTypeDialogComponent } from './features/settings/components/chart-type-dialog/edit-chart-type-dialog/edit-chart-type-dialog.component';
 import { NewChartDialogComponent } from './features/settings/components/chart-type-dialog/new-chart-dialog/new-chart-dialog.component';
+import { DatesDisplayComponent } from './features/view-mode/components/dates-display/dates-display.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,8 @@ import { NewChartDialogComponent } from './features/settings/components/chart-ty
     ChartTypeDisplay,
     EditChartTypeDialogComponent,
     ChartTypeDialogComponent,
+    DatesDisplayComponent,
+
     StoreModule.forRoot({
       chartTypes: chartTypeReducer,
     }),

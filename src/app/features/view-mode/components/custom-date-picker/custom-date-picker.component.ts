@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+
 import { Store } from '@ngrx/store';
+
 import {
   filterViewModeData,
   resetViewModeData,
 } from '../../../../shared/state/chart-types/chart-type.action';
-import { selectFilterRange } from '../../../../shared/state/chart-types/chart-type.selector';
+import { DatesDisplayComponent } from '../dates-display/dates-display.component';
 
 @Component({
   selector: 'app-custom-date-picker',
@@ -24,7 +23,7 @@ import { selectFilterRange } from '../../../../shared/state/chart-types/chart-ty
     MatNativeDateModule,
     ReactiveFormsModule,
     MatButtonModule,
-    CommonModule,
+    DatesDisplayComponent,
   ],
 })
 export class CustomDatePickerComponent {
@@ -33,11 +32,13 @@ export class CustomDatePickerComponent {
     end: new FormControl<Date | null>(null),
   });
 
-  filterRange$ = this.store.select(selectFilterRange);
+  isFiltering = false;
 
   constructor(private store: Store) {}
 
   onApply() {
+    this.isFiltering = true;
+
     this.store.dispatch(
       filterViewModeData({
         range: {
@@ -49,6 +50,8 @@ export class CustomDatePickerComponent {
   }
 
   resetDateRange() {
+    this.isFiltering = false;
+
     this.store.dispatch(resetViewModeData());
     this.range.reset();
   }

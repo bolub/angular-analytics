@@ -2,7 +2,7 @@
   <span class="hidden md:inline-block">Filter by:</span>
   <mat-form-field>
     <mat-label>Date range</mat-label>
-    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+    <mat-date-range-input [formGroup]="range" [rangePicker]="picker" #test>
       <input matStartDate formControlName="start" placeholder="Start date" />
       <input matEndDate formControlName="end" placeholder="End date" />
     </mat-date-range-input>
@@ -22,37 +22,9 @@
   </button>
 </div>
 
-<button
-  [ngClass]="rangeValues.start ? 'block' : 'hidden'"
-  class="mt-2 text-sm bg-gray-200 w-fit py-2 px-4 rounded-full cursor-pointer flex gap-2 items-center"
-  (click)="resetDateRange()"
-  *ngIf="filterRange$ | async as rangeValues"
->
-  <span>
-    Date range:
-    <span class="font-semibold">
-      {{ rangeValues.start | date }}
-    </span>
-
-    to
-
-    <span class="font-semibold">
-      {{ rangeValues.end | date }}
-    </span>
-  </span>
-
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke-width="2"
-    stroke="currentColor"
-    class="w-5 h-5"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      d="M6 18L18 6M6 6l12 12"
-    />
-  </svg>
-</button>
+<app-dates-display
+  [startDate]="range.get('start')?.value"
+  [endDate]="range.get('end')?.value"
+  [isFiltering]="isFiltering"
+  (resetClicked)="resetDateRange()"
+/>

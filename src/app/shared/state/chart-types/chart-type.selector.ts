@@ -29,11 +29,6 @@ export const selectChartTypesLoadingStatus = createSelector(
   (state) => state.allChartTypesLoadingStatus
 );
 
-export const selectFilterRange = createSelector(
-  selectChartTypesState,
-  (state) => state.filterRange
-);
-
 export const selectCurrentChartType = createSelector(
   selectChartTypesState,
   (state) => state.currentChartType

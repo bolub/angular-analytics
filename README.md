@@ -28,7 +28,15 @@ The project follows a common structure with three main folders: core, features, 
 The core folder contains essential components and services that are crucial for the functioning of the application.
 
 2. **Features**:
-The features folder is where we organize our application's main functionality or feature modules which in this case is Settings and ViewMode
+The features folder is where we organize our application's main functionality or feature modules which in this case are Settings and ViewMode
 
 3. **Shared**:
 The shared folder is for components, state, and other resources that can be shared across different parts of the application. It typically includes:
+
+&nbsp;
+## API and Data
+For API communication, we have integrated a quick backend using Appwrite. Appwrite is used to save chart information and interact with the server.
+
+&nbsp;
+### Mock Data
+To facilitate development and testing, we have created a custom mock service located at app/core/mock/mock. This mock service generates mock data for the charts.

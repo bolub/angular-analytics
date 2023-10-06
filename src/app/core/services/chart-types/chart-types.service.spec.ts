@@ -55,7 +55,9 @@ describe('ChartTypesService', () => {
         expect(data.documents).toEqual(mockChartTypes);
       });
 
-      const req = httpMock.expectOne(service.httpUrl);
+      const req = httpMock.expectOne(
+        `${service.httpUrl}${service.queryString}`
+      );
       expect(req.request.method).toBe('GET');
 
       req.flush({ documents: mockChartTypes });
@@ -70,7 +72,9 @@ describe('ChartTypesService', () => {
         },
       });
 
-      const req = httpMock.expectOne(service.httpUrl);
+      const req = httpMock.expectOne(
+        `${service.httpUrl}${service.queryString}`
+      );
       expect(req.request.method).toBe('GET');
 
       req.flush(errorMessage, { status: 404, statusText: 'Not Found' });

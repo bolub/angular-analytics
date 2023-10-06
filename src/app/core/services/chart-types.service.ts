@@ -21,7 +21,6 @@ export class ChartTypesService {
       'X-Appwrite-Key': import.meta.env['NG_APP_JWT_KEY'],
     }),
   };
-
   queryString = `?queries[0]=orderDesc("$createdAt")`;
 
   getChartTypes$ = this.http

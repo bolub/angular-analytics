@@ -22,13 +22,6 @@ export class ChartTypesService {
     }),
   };
 
-  getChartTypes() {
-    return this.http.get<{ documents: ChartTypeFull[] }>(
-      this.httpUrl,
-      this.httpOptions
-    );
-  }
-
   getChartTypes$ = this.http
     .get<{ documents: ChartTypeFull[] }>(this.httpUrl, this.httpOptions)
     .pipe(shareReplay(1));

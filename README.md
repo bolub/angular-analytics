@@ -34,9 +34,13 @@ The features folder is where we organize our application's main functionality or
 The shared folder is for components, state, and other resources that can be shared across different parts of the application. It typically includes:
 
 &nbsp;
-## API and Data
+### API and Data
 For API communication, we have integrated a quick backend using Appwrite. Appwrite is used to save chart information and interact with the server.
 
 &nbsp;
 ### Mock Data
 To facilitate development and testing, we have created a custom mock service located at [src/app/core/mock](https://github.com/bolub/angular-analytics/tree/main/src/app/core/services/mock). This mock service generates mock data for the charts.
+
+&nbsp;
+### Project Management
+The project was managed using GitHub [issues](https://github.com/bolub/angular-analytics/issues).

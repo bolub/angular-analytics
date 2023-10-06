@@ -4,12 +4,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import {
-  FormGroup,
-  FormControl,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Store } from '@ngrx/store';
@@ -27,7 +22,6 @@ import { selectFilterRange } from '../../../../shared/state/chart-types/chart-ty
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
     CommonModule,

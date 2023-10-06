@@ -10,7 +10,7 @@ import { ChartTypesService } from 'src/app/core/services/chart-types/chart-types
 import { selectAllChartTypes } from './chart-type.selector';
 import { AppState } from '../app.state';
 import { MockService } from 'src/app/core/services/mock/mock.service';
-import { formatData } from 'src/app/modules/view-mode/utils';
+import { formatData } from 'src/app/features/view-mode/utils';
 
 @Injectable()
 export class ChartTypeEffects {

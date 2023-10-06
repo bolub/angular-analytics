@@ -16,9 +16,12 @@ import {
   updateChartTypeError,
   updateChartTypeSuccess,
 } from './chart-type.action';
-import { ChartTypeFull } from 'src/app/modules/settings/settings.model';
-import { RangeType, ViewMode } from 'src/app/modules/view-mode/view-mode.model';
-import { filterValidItemsInRange } from 'src/app/modules/view-mode/utils';
+import { ChartTypeFull } from 'src/app/features/settings/settings.model';
+import {
+  RangeType,
+  ViewMode,
+} from 'src/app/features/view-mode/view-mode.model';
+import { filterValidItemsInRange } from 'src/app/features/view-mode/utils';
 
 export type Status = 'pending' | 'loading' | 'error' | 'success';
 export type ActionType = 'create' | 'delete' | 'update';

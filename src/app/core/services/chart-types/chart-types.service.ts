@@ -4,7 +4,7 @@ import { MockService } from '../mock/mock.service';
 import {
   ChartType,
   ChartTypeFull,
-} from 'src/app/modules/settings/settings.model';
+} from 'src/app/features/settings/settings.model';
 import { shareReplay } from 'rxjs';
 
 @Injectable({

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GraphValue } from '../../../modules/settings/settings.model';
+import { GraphValue } from '../../../features/settings/settings.model';
 
 @Injectable({
   providedIn: 'root',

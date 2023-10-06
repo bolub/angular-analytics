@@ -10,7 +10,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import {
   ChartTypeFull,
   GraphValue,
-} from 'src/app/modules/settings/settings.model';
+} from 'src/app/features/settings/settings.model';
 
 export type Graph = ChartTypeFull & {
   data: GraphValue[];

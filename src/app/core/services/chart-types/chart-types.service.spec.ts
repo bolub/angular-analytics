@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http/testing';
 import { ChartTypesService } from './chart-types.service';
 import { MockService } from '../../services/mock/mock.service';
-import { ChartType } from 'src/app/modules/settings/settings.model';
+import { ChartType } from 'src/app/features/settings/settings.model';
 
 describe('ChartTypesService', () => {
   let service: ChartTypesService;

@@ -3,8 +3,11 @@ import {
   ChartType,
   ChartTypeFull,
   GraphValue,
-} from 'src/app/modules/settings/settings.model';
-import { RangeType, ViewMode } from 'src/app/modules/view-mode/view-mode.model';
+} from 'src/app/features/settings/settings.model';
+import {
+  RangeType,
+  ViewMode,
+} from 'src/app/features/view-mode/view-mode.model';
 
 // create actions
 export const createChartType = createAction(

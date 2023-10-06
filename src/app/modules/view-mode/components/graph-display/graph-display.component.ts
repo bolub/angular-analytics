@@ -2,7 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
@@ -24,7 +25,7 @@ export type Graph = ChartTypeFull & {
 })
 
 //
-export class GraphDisplayComponent implements OnInit {
+export class GraphDisplayComponent implements OnChanges {
   @Input({ required: true }) data!: Graph;
 
   Highcharts: typeof Highcharts = Highcharts;
@@ -34,8 +35,8 @@ export class GraphDisplayComponent implements OnInit {
   oneToOneFlag: boolean = true;
   runOutsideAngular: boolean = false;
 
-  formatData() {
-    return this.data.data.map((d) => {
+  formatData(data: GraphValue[]) {
+    return data.map((d) => {
       return {
         x: d.date,
         y: d.value,
@@ -53,13 +54,27 @@ export class GraphDisplayComponent implements OnInit {
       colors: [this.data.color],
       series: [
         {
-          data: this.formatData(),
+          data: this.formatData(this.data.data),
           type: this.data.selectedType as any,
         },
       ],
       xAxis: {
         type: 'datetime',
       },
+    };
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const currentValue = changes['data'].currentValue as Graph;
+
+    this.chartOptions = {
+      ...this.chartOptions,
+      series: [
+        {
+          data: this.formatData(currentValue.data),
+          type: this.data.selectedType as any,
+        },
+      ],
     };
   }
 }

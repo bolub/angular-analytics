@@ -56,22 +56,38 @@ export const initialChartTypesState: ChartTypeState = {
 export const chartTypeReducer = createReducer(
   initialChartTypesState,
 
+  // handle all success states
+  on(
+    createChartTypeSuccess,
+    deleteChartTypeSuccess,
+    updateChartTypeSuccess,
+    (state) => ({
+      ...state,
+      status: 'success' as Status,
+      actionType: undefined,
+    })
+  ),
+
+  // handle all error states
+  on(
+    createChartTypeError,
+    deleteChartTypeError,
+    updateChartTypeError,
+    loadChartTypesFailure,
+    (state, payload) => ({
+      ...state,
+      error: payload.error,
+      status: 'error' as Status,
+      actionType: undefined,
+      allChartTypesLoadingStatus: 'error' as Status,
+    })
+  ),
+
   // create chart types
   on(createChartType, (state, payload) => ({
     ...state,
     status: 'loading' as Status,
     actionType: 'create' as ActionType,
-  })),
-  on(createChartTypeSuccess, (state, payload) => ({
-    ...state,
-    status: 'success' as Status,
-    actionType: undefined,
-  })),
-  on(createChartTypeError, (state, payload) => ({
-    ...state,
-    error: payload.error,
-    status: 'error' as Status,
-    actionType: undefined,
   })),
 
   // set current chart type
@@ -86,35 +102,19 @@ export const chartTypeReducer = createReducer(
     status: 'loading' as Status,
     actionType: 'delete' as ActionType,
   })),
-  on(deleteChartTypeSuccess, (state, payload) => ({
-    ...state,
-    status: 'success' as Status,
-    actionType: undefined,
-  })),
-  on(deleteChartTypeError, (state, payload) => ({
-    ...state,
-    error: payload.error,
-    status: 'error' as Status,
-    actionType: undefined,
-  })),
 
   // load chart types
   on(loadChartTypes, (state, payload) => ({
     ...state,
     allChartTypesLoadingStatus: 'loading' as Status,
   })),
+
   on(loadChartTypesSuccess, (state, payload) => ({
     ...state,
     allChartTypesLoadingStatus: 'success' as Status,
     allChartTypes: payload.chartTypes,
     allChartTypesForViewMode: payload.chartTypesForViewMode,
     originalAllChartTypesForViewMode: payload.chartTypesForViewMode,
-  })),
-
-  on(loadChartTypesFailure, (state, payload) => ({
-    ...state,
-    allChartTypesLoadingStatus: 'error' as Status,
-    error: payload.error,
   })),
 
   // filter view mode data
@@ -146,16 +146,5 @@ export const chartTypeReducer = createReducer(
     ...state,
     status: 'loading' as Status,
     actionType: 'update' as ActionType,
-  })),
-  on(updateChartTypeSuccess, (state, payload) => ({
-    ...state,
-    status: 'success' as Status,
-    actionType: undefined,
-  })),
-  on(updateChartTypeError, (state, payload) => ({
-    ...state,
-    error: payload.error,
-    status: 'error' as Status,
-    actionType: undefined,
   }))
 );

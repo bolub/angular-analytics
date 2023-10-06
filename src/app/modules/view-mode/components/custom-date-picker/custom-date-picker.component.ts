@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -18,11 +18,6 @@ import {
   resetViewModeData,
 } from '../../../../shared/state/chart-types/chart-type.action';
 import { selectFilterRange } from '../../../../shared/state/chart-types/chart-type.selector';
-
-type DateChangeEvent = {
-  start?: Date | null;
-  end?: Date | null;
-};
 
 @Component({
   selector: 'app-custom-date-picker',

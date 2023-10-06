@@ -8,7 +8,7 @@ describe('EditChartTypeDialogComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EditChartTypeDialogComponent]
+      imports: [EditChartTypeDialogComponent],
     });
     fixture = TestBed.createComponent(EditChartTypeDialogComponent);
     component = fixture.componentInstance;

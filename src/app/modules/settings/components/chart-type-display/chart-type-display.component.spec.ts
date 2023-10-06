@@ -8,7 +8,7 @@ describe('GraphContentComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [GraphContentComponent],
+      imports: [GraphContentComponent],
     });
     fixture = TestBed.createComponent(GraphContentComponent);
     component = fixture.componentInstance;

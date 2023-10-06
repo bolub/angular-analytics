@@ -8,7 +8,7 @@ describe('GraphDisplayComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [GraphDisplayComponent],
+      imports: [GraphDisplayComponent],
     });
     fixture = TestBed.createComponent(GraphDisplayComponent);
     component = fixture.componentInstance;

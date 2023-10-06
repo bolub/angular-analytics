@@ -8,7 +8,8 @@ describe('NewChartDialogComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [NewChartDialogComponent]
+      declarations: [],
+      imports: [NewChartDialogComponent],
     });
     fixture = TestBed.createComponent(NewChartDialogComponent);
     component = fixture.componentInstance;

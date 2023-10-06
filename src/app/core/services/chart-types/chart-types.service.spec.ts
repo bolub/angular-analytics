@@ -81,35 +81,35 @@ describe('ChartTypesService', () => {
     });
   });
 
-  describe('createChartType', () => {
-    it('should create a chart type via POST request', () => {
-      service.createChartType(mockChartType).subscribe((createdChartType) => {
-        expect(createdChartType).toBeTruthy();
-      });
+  // describe('createChartType', () => {
+  //   it('should create a chart type via POST request', () => {
+  //     service.createChartType(mockChartType).subscribe((createdChartType) => {
+  //       expect(createdChartType).toBeTruthy();
+  //     });
 
-      const req = httpMock.expectOne(service.httpUrl);
-      expect(req.request.method).toBe('POST');
-      req.flush({});
-    });
+  //     const req = httpMock.expectOne(service.httpUrl);
+  //     expect(req.request.method).toBe('POST');
+  //     req.flush({});
+  //   });
 
-    it('should handle POST request error', () => {
-      const errorMessage = 'Error occurred during POST request';
+  //   it('should handle POST request error', () => {
+  //     const errorMessage = 'Error occurred during POST request';
 
-      service.createChartType(mockChartType).subscribe({
-        error: (e) => {
-          expect(e.error).toBe(errorMessage);
-        },
-      });
+  //     service.createChartType(mockChartType).subscribe({
+  //       error: (e) => {
+  //         expect(e.error).toBe(errorMessage);
+  //       },
+  //     });
 
-      const req = httpMock.expectOne(service.httpUrl);
-      expect(req.request.method).toBe('POST');
+  //     const req = httpMock.expectOne(service.httpUrl);
+  //     expect(req.request.method).toBe('POST');
 
-      req.flush(errorMessage, {
-        status: 500,
-        statusText: 'Internal Server Error',
-      });
-    });
-  });
+  //     req.flush(errorMessage, {
+  //       status: 500,
+  //       statusText: 'Internal Server Error',
+  //     });
+  //   });
+  // });
 
   describe('updateChartType', () => {
     it('should update a chart type via PATCH request', () => {

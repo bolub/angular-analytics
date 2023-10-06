@@ -4,7 +4,7 @@ This project is the solution to the Natlex group frontend developer assignment
 &nbsp;
 
 ## Table of contents
-- [Assignment Question Resources](#assignment-resources)
+- [Assignment Resources](#assignment-resources)
 - [Dependencies](#dependencies)
 - [Project Documentation](#project-documentation)
   * [Project Structure](#project-structure)

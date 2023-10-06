@@ -23,7 +23,7 @@ import { ChartTypeEffects } from './shared/state/chart-types/chart-type.effects'
 import { chartTypeReducer } from './shared/state/chart-types/chart-type.reducer';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { EmptyComponent } from './shared/components/empty/empty.component';
-import { ChartTypeDialogComponent } from './features/settings/components/chart-type-dialog/form-input.component';
+import { FormInputComponent } from './features/settings/components/chart-type-dialog/form-input.component';
 import { EditChartTypeDialogComponent } from './features/settings/components/chart-type-dialog/edit-chart-type-dialog/edit-chart-type-dialog.component';
 import { NewChartDialogComponent } from './features/settings/components/chart-type-dialog/new-chart-dialog/new-chart-dialog.component';
 import { DatesDisplayComponent } from './features/view-mode/components/dates-display/dates-display.component';
@@ -53,7 +53,7 @@ import { DatesDisplayComponent } from './features/view-mode/components/dates-dis
     HttpClientModule,
     ChartTypeDisplay,
     EditChartTypeDialogComponent,
-    ChartTypeDialogComponent,
+    FormInputComponent,
     DatesDisplayComponent,
 
     StoreModule.forRoot({

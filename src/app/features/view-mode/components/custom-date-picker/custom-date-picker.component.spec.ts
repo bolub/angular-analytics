@@ -5,15 +5,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { Store } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('CustomDatePickerComponent', () => {
   let component: CustomDatePickerComponent;
   let fixture: ComponentFixture<CustomDatePickerComponent>;
-  let store: MockStore;
-  let dispatchSpy: jasmine.Spy;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -28,9 +25,6 @@ describe('CustomDatePickerComponent', () => {
       ],
       providers: [provideMockStore({})],
     }).compileComponents();
-
-    store = TestBed.inject(Store) as MockStore;
-    dispatchSpy = spyOn(store, 'dispatch');
   });
 
   beforeEach(() => {

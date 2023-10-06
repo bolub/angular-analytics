@@ -14,7 +14,6 @@ import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChartType } from '../../settings.model';
-import { Store } from '@ngrx/store';
 
 interface ChartTypeSelector {
   value: string;
@@ -38,7 +37,7 @@ interface ChartTypeSelector {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChartTypeDialogComponent {
+export class FormInputComponent {
   chartTypes: ChartTypeSelector[] = [
     { value: 'bar', viewValue: 'Bar' },
     { value: 'line', viewValue: 'Line' },
@@ -50,7 +49,7 @@ export class ChartTypeDialogComponent {
   chartForm!: FormGroup;
   currentChartType!: ChartType | undefined;
 
-  constructor(private fb: FormBuilder, private store: Store) {
+  constructor(private fb: FormBuilder) {
     this.chartForm = this.fb.group({
       title: [''],
       selectedType: [''],

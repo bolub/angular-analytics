@@ -12,7 +12,7 @@ import {
 import { Status } from 'src/app/shared/state/chart-types/chart-type.reducer';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Subscription, combineLatest } from 'rxjs';
-import { ChartTypeDialogComponent } from '../form-input.component';
+import { FormInputComponent } from '../form-input.component';
 
 @Component({
   selector: 'app-new-chart-dialog',
@@ -23,7 +23,7 @@ import { ChartTypeDialogComponent } from '../form-input.component';
     MatButtonModule,
     CommonModule,
     MatSnackBarModule,
-    ChartTypeDialogComponent,
+    FormInputComponent,
   ],
 })
 export class NewChartDialogComponent implements OnInit, OnDestroy {
@@ -31,7 +31,7 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
   dataSubscription$!: Subscription;
 
   @ViewChild('chartFormComponent')
-  chartFormComponent!: ChartTypeDialogComponent;
+  chartFormComponent!: FormInputComponent;
 
   constructor(
     private store: Store,

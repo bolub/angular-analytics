@@ -8,7 +8,7 @@ describe('CustomDatePickerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CustomDatePickerComponent]
+      imports: [CustomDatePickerComponent],
     });
     fixture = TestBed.createComponent(CustomDatePickerComponent);
     component = fixture.componentInstance;

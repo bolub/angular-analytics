@@ -15,7 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { CustomDatePickerComponent } from './modules/view-mode/components/custom-date-picker/custom-date-picker.component';
 import { GraphDisplayComponent } from './modules/view-mode/components/graph-display/graph-display.component';
 import { PageHeaderComponent } from './shared/components/page-header/page-header.component';
-import { GraphContentComponent } from './modules/settings/components/chart-type-display/chart-type-display.component';
+import { ChartTypeDisplay } from './modules/settings/components/chart-type-display/chart-type-display.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -50,7 +50,7 @@ import { NewChartDialogComponent } from './modules/settings/components/chart-typ
     NewChartDialogComponent,
     GraphDisplayComponent,
     HttpClientModule,
-    GraphContentComponent,
+    ChartTypeDisplay,
     EditChartTypeDialogComponent,
     ChartTypeDialogComponent,
     StoreModule.forRoot({

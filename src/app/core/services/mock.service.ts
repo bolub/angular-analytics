@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-// import { GraphValue } from 'src/app/modules/settings/settings.model';
 import { GraphValue } from '../../modules/settings/settings.model';
 
 @Injectable({

@@ -26,7 +26,7 @@ import { EditChartTypeDialogComponent } from '../chart-type-dialog/edit-chart-ty
   imports: [MatSnackBarModule, CommonModule, MatIconModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GraphContentComponent {
+export class ChartTypeDisplay {
   @Input({ required: true }) data!: ChartTypeFull;
 
   loading = false;

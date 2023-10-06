@@ -22,8 +22,13 @@ export class ChartTypesService {
     }),
   };
 
+  queryString = `?queries[0]=orderDesc("$createdAt")`;
+
   getChartTypes$ = this.http
-    .get<{ documents: ChartTypeFull[] }>(this.httpUrl, this.httpOptions)
+    .get<{ documents: ChartTypeFull[] }>(
+      `${this.httpUrl}${this.queryString}`,
+      this.httpOptions
+    )
     .pipe(shareReplay(1));
 
   createChartType(ct: ChartType) {

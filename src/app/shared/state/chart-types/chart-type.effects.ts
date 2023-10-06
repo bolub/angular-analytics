@@ -6,10 +6,10 @@ import { catchError, switchMap, withLatestFrom } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import * as chartTypeActions from './chart-type.action';
-import { ChartTypesService } from 'src/app/core/services/chart-types.service';
+import { ChartTypesService } from 'src/app/core/services/chart-types/chart-types.service';
 import { selectAllChartTypes } from './chart-type.selector';
 import { AppState } from '../app.state';
-import { MockService } from 'src/app/core/services/mock.service';
+import { MockService } from 'src/app/core/services/mock/mock.service';
 import { formatData } from 'src/app/modules/view-mode/utils';
 
 @Injectable()

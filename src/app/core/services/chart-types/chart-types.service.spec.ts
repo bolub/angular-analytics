@@ -4,7 +4,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { ChartTypesService } from './chart-types.service';
-import { MockService } from './mock.service';
+import { MockService } from '../../services/mock/mock.service';
 import { ChartType } from 'src/app/modules/settings/settings.model';
 
 describe('ChartTypesService', () => {

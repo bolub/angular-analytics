@@ -1,4 +1,4 @@
-<div class="border rounded-lg p-8 md:px-10 py-12">
+<div class="border rounded-lg p-8 md:px-9 py-10">
   <h2 class="font-semibold text-lg">{{ data.title }}</h2>
 
   <p
@@ -64,4 +64,8 @@
       </svg>
     </button>
   </div>
+
+  <p class="mt-8 text-xs text-gray-500">
+    Created {{ data.$createdAt | date : "MMM d, y, h:mm a" }}
+  </p>
 </div>

@@ -39,4 +39,4 @@ For API communication, we have integrated a quick backend using Appwrite. Appwri
 
 &nbsp;
 ### Mock Data
-To facilitate development and testing, we have created a custom mock service located at app/core/mock/mock. This mock service generates mock data for the charts.
+To facilitate development and testing, we have created a custom mock service located at [src/app/core/mock](https://github.com/bolub/angular-analytics/tree/main/src/app/core/services/mock). This mock service generates mock data for the charts.

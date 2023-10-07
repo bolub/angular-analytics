@@ -1,0 +1,8 @@
+{
+    
+    "startDateInput": ".mat-start-date",
+    "endDateInput": ".mat-end-date",
+    "applyFilterButton": "[data-test-id='apply-date-filter']",
+    "selectedDates": "[data-test-id='start-end-date-button']"
+}
+ 

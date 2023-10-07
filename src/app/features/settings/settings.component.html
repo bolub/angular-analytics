@@ -2,7 +2,12 @@
   <div class="my-auto ml-auto">
     <!-- <app-new-chart /> -->
 
-    <button (click)="openDialog()" mat-flat-button color="primary">
+    <button
+      data-test-id="new-chart"
+      (click)="openDialog()"
+      mat-flat-button
+      color="primary"
+    >
       New chart
     </button>
   </div>

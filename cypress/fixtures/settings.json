@@ -1,0 +1,12 @@
+{
+    
+    "newChartTypeButton": "[data-test-id='new-chart']",
+    "chartInputTitle": "[data-test-id='chart-title']",
+    "chartInputType": "[data-test-id='chart-type']",
+    "chartInputOption": "[data-test-id='*']",
+    "addChartActionButton": "[data-test-id='add-chart-button']",
+    "deleteChartActionButton": "[data-test-id='delete-*-button']",
+    "editChartActionButton": "[data-test-id='edit-*-button']",
+    "updateChartActionButton": "[data-test-id='update-chart-button']"
+}
+ 

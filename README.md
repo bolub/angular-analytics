@@ -11,6 +11,7 @@ This project is the solution to the Natlex group frontend developer assignment
   * [API and Data](#api-and-data)
   * [Mock Data](#mock-data)
   * [Project Management](#project-management)
+  * [Tests](#tests)
 
 
 &nbsp;
@@ -53,3 +54,7 @@ To facilitate development and testing, we have created a custom mock service loc
 &nbsp;
 ### Project Management
 The project was managed using GitHub [issues](https://github.com/bolub/angular-analytics/issues).
+
+&nbsp;
+### Tests
+Unit tests have been written with jasmine and e2e tests with cypress

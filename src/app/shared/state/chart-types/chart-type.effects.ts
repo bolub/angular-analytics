@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { from, of } from 'rxjs';
-import { catchError, switchMap, withLatestFrom } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
 
 import * as chartTypeActions from './chart-type.action';
 import { ChartTypesService } from 'src/app/core/services/chart-types/chart-types.service';
-import { selectAllChartTypes } from './chart-type.selector';
 import { AppState } from '../app.state';
 import { MockService } from 'src/app/core/services/mock/mock.service';
 import { formatData } from 'src/app/features/view-mode/utils';
@@ -48,8 +47,7 @@ export class ChartTypeEffects {
   createChartType$ = createEffect(() =>
     this.actions$.pipe(
       ofType(chartTypeActions.createChartType),
-      withLatestFrom(this.store.select(selectAllChartTypes)),
-      switchMap(([action]) =>
+      switchMap((action) =>
         from(
           this.chartTypeService.createChartType({
             title: action.title,
@@ -71,8 +69,7 @@ export class ChartTypeEffects {
   deleteChartType$ = createEffect(() =>
     this.actions$.pipe(
       ofType(chartTypeActions.deleteChartType),
-      withLatestFrom(this.store.select(selectAllChartTypes)),
-      switchMap(([action]) =>
+      switchMap((action) =>
         from(this.chartTypeService.deleteChartType(action.$id)).pipe(
           switchMap((chartType) => {
             return [chartTypeActions.deleteChartTypeSuccess({ chartType })];
@@ -88,8 +85,7 @@ export class ChartTypeEffects {
   updateChartType$ = createEffect(() =>
     this.actions$.pipe(
       ofType(chartTypeActions.updateChartType),
-      withLatestFrom(this.store.select(selectAllChartTypes)),
-      switchMap(([action]) =>
+      switchMap((action) =>
         from(
           this.chartTypeService.updateChartType({
             documentId: action.$id,

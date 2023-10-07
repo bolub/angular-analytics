@@ -1,15 +1,16 @@
 <form [formGroup]="chartForm" class="flex flex-col gap-2 py-6">
   <mat-form-field class="w-full">
     <mat-label>Chart title</mat-label>
-    <input formControlName="title" matInput />
+    <input formControlName="title" matInput data-test-id="chart-title" />
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Chart type</mat-label>
-    <mat-select formControlName="selectedType">
+    <mat-select data-test-id="chart-type" formControlName="selectedType">
       <mat-option
         *ngFor="let chartType of chartTypes; trackBy: trackByFn"
         [value]="chartType.value"
+        [attr.data-test-id]="chartType.value"
       >
         {{ chartType.viewValue }}
       </mat-option>

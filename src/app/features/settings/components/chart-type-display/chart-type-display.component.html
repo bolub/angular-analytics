@@ -24,6 +24,7 @@
       color="primary"
       (click)="openEditModal()"
       aria-label="Edit"
+      [attr.data-test-id]="'edit-' + data.title + '-button'"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -47,6 +48,7 @@
       aria-label="Delete"
       (click)="onDelete()"
       [disabled]="status === 'loading'"
+      [attr.data-test-id]="'delete-' + data.title + '-button'"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

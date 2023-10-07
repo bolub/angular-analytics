@@ -53,7 +53,7 @@ export class FormInputComponent {
     this.chartForm = this.fb.group({
       title: [''],
       selectedType: [''],
-      color: [''],
+      color: ['#000000'],
     });
   }
 

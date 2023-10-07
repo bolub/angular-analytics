@@ -1,8 +1,8 @@
 <app-page-header title="Analytics" />
 
-<app-custom-date-picker />
-
 <ng-container *ngIf="data$ | async as data">
+  <app-custom-date-picker *ngIf="data.allChartTypesForViewMode.length > 0" />
+
   <main class="mt-10">
     <app-loader [status]="data.status" />
 

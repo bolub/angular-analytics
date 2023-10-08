@@ -1,7 +1,8 @@
 <div
   data-testid="loader-container"
   *ngIf="status === 'loading'"
-  class="flex w-full justify-center text-center items-center h-[40vh]"
+  class="flex flex-col w-full justify-center text-center items-center h-[60vh]"
 >
-  <p>Loading data...</p>
+  <mat-spinner [diameter]="70" [strokeWidth]="3"></mat-spinner>
+  <p class="mt-10">Loading data...</p>
 </div>

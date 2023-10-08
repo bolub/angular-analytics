@@ -36,7 +36,6 @@ import { SideNavItemsComponent } from './shared/components/side-nav-items/side-n
     SettingsComponent,
     ViewModeComponent,
     PageHeaderComponent,
-    LoaderComponent,
     EmptyComponent,
   ],
   imports: [
@@ -59,6 +58,7 @@ import { SideNavItemsComponent } from './shared/components/side-nav-items/side-n
     AppshellComponent,
     NavbarComponent,
     SideNavItemsComponent,
+    LoaderComponent,
     StoreModule.forRoot({
       chartTypes: chartTypeReducer,
     }),

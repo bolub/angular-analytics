@@ -10,7 +10,7 @@ describe('LoaderComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LoaderComponent],
+      imports: [LoaderComponent],
     }).overrideComponent(LoaderComponent, {
       set: {
         changeDetection: ChangeDetectionStrategy.Default,

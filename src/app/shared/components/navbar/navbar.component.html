@@ -1,0 +1,83 @@
+<nav class="bg-blue-900 h-20 w-full flex items-center">
+  <div class="custom-container flex items-center">
+    <!-- logo -->
+    <span class="text-white uppercase text-sm font-semibold">
+      Angular Analytics
+    </span>
+
+    <!-- nav items -->
+    <div class="mx-auto items-center hidden md:flex">
+      <span class="text-white uppercase text-sm font-semibold md:hidden">
+        A-Analytics
+      </span>
+
+      <ul class="flex ml-auto md:mx-auto gap-5">
+        <li>
+          <a
+            class="text-sm p-2 rounded-md font-medium text-white"
+            [routerLink]="'/view-mode'"
+            routerLinkActive="active-link"
+            data-testid="router-link"
+          >
+            View mode
+          </a>
+        </li>
+
+        <li>
+          <a
+            class="text-sm p-2 rounded-md font-medium text-white"
+            [routerLink]="'/settings'"
+            routerLinkActive="active-link"
+            data-testid="router-link"
+          >
+            Settings
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="hidden md:flex gap-5">
+      <a
+        href="https://github.com/bolub/angular-analytics"
+        class="text-sm flex items-center underline gap-1 text-white"
+      >
+        Github
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-3 h-3"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <!-- other -->
+    <div class="md:hidden ml-auto">
+      <button mat-mini-fab color="primary" (click)="closeSide()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 9h16.5m-16.5 6.75h16.5"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>

@@ -27,12 +27,13 @@ import { FormInputComponent } from './features/settings/components/chart-type-di
 import { EditChartTypeDialogComponent } from './features/settings/components/chart-type-dialog/edit-chart-type-dialog/edit-chart-type-dialog.component';
 import { NewChartDialogComponent } from './features/settings/components/chart-type-dialog/new-chart-dialog/new-chart-dialog.component';
 import { DatesDisplayComponent } from './features/view-mode/components/dates-display/dates-display.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { SideNavItemsComponent } from './shared/components/side-nav-items/side-nav-items.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SettingsComponent,
-    AppshellComponent,
     ViewModeComponent,
     PageHeaderComponent,
     LoaderComponent,
@@ -55,7 +56,9 @@ import { DatesDisplayComponent } from './features/view-mode/components/dates-dis
     EditChartTypeDialogComponent,
     FormInputComponent,
     DatesDisplayComponent,
-
+    AppshellComponent,
+    NavbarComponent,
+    SideNavItemsComponent,
     StoreModule.forRoot({
       chartTypes: chartTypeReducer,
     }),

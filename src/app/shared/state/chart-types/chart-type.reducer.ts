@@ -1,21 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import {
-  createChartType,
-  createChartTypeError,
-  createChartTypeSuccess,
-  deleteChartType,
-  deleteChartTypeError,
-  deleteChartTypeSuccess,
-  filterViewModeData,
-  loadChartTypes,
-  loadChartTypesFailure,
-  loadChartTypesSuccess,
-  resetViewModeData,
-  setCurrentChartType,
-  updateChartType,
-  updateChartTypeError,
-  updateChartTypeSuccess,
-} from './chart-type.action';
+import { ChartTypeActions } from './chart-type.action';
 import { ChartTypeFull } from 'src/app/features/settings/settings.model';
 import {
   RangeType,
@@ -58,9 +42,9 @@ export const chartTypeReducer = createReducer(
 
   // handle all success states
   on(
-    createChartTypeSuccess,
-    deleteChartTypeSuccess,
-    updateChartTypeSuccess,
+    ChartTypeActions.createSuccess,
+    ChartTypeActions.deleteSuccess,
+    ChartTypeActions.updateSuccess,
     (state) => ({
       ...state,
       status: 'success' as Status,
@@ -70,10 +54,10 @@ export const chartTypeReducer = createReducer(
 
   // handle all error states
   on(
-    createChartTypeError,
-    deleteChartTypeError,
-    updateChartTypeError,
-    loadChartTypesFailure,
+    ChartTypeActions.createError,
+    ChartTypeActions.deleteError,
+    ChartTypeActions.updateError,
+    ChartTypeActions.loadFailure,
     (state, payload) => ({
       ...state,
       error: payload.error,
@@ -84,32 +68,32 @@ export const chartTypeReducer = createReducer(
   ),
 
   // create chart types
-  on(createChartType, (state, payload) => ({
+  on(ChartTypeActions.create, (state, payload) => ({
     ...state,
     status: 'loading' as Status,
     actionType: 'create' as ActionType,
   })),
 
   // set current chart type
-  on(setCurrentChartType, (state, payload) => ({
+  on(ChartTypeActions.setCurrentChartType, (state, payload) => ({
     ...state,
     currentChartType: payload.data,
   })),
 
   // delete chart types
-  on(deleteChartType, (state, payload) => ({
+  on(ChartTypeActions.delete, (state, payload) => ({
     ...state,
     status: 'loading' as Status,
     actionType: 'delete' as ActionType,
   })),
 
   // load chart types
-  on(loadChartTypes, (state, payload) => ({
+  on(ChartTypeActions.load, (state, payload) => ({
     ...state,
     allChartTypesLoadingStatus: 'loading' as Status,
   })),
 
-  on(loadChartTypesSuccess, (state, payload) => ({
+  on(ChartTypeActions.loadSuccess, (state, payload) => ({
     ...state,
     allChartTypesLoadingStatus: 'success' as Status,
     allChartTypes: payload.chartTypes,
@@ -118,7 +102,7 @@ export const chartTypeReducer = createReducer(
   })),
 
   // filter view mode data
-  on(filterViewModeData, (state, { range }) => {
+  on(ChartTypeActions.filterViewModeData, (state, { range }) => {
     const filteredAllChartTypesForViewMode = filterValidItemsInRange(
       [...state.allChartTypesForViewMode],
       range
@@ -130,7 +114,7 @@ export const chartTypeReducer = createReducer(
       filterRange: range,
     };
   }),
-  on(resetViewModeData, (state) => {
+  on(ChartTypeActions.resetViewModeData, (state) => {
     return {
       ...state,
       allChartTypesForViewMode: state.originalAllChartTypesForViewMode,
@@ -142,7 +126,7 @@ export const chartTypeReducer = createReducer(
   }),
 
   // update chart types
-  on(updateChartType, (state, payload) => ({
+  on(ChartTypeActions.update, (state, payload) => ({
     ...state,
     status: 'loading' as Status,
     actionType: 'update' as ActionType,

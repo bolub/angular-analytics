@@ -3,11 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { from, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
-import { Store } from '@ngrx/store';
-
-import * as chartTypeActions from './chart-type.action';
+import { ChartTypeActions } from './chart-type.action';
 import { ChartTypesService } from 'src/app/core/services/chart-types/chart-types.service';
-import { AppState } from '../app.state';
 import { MockService } from 'src/app/core/services/mock/mock.service';
 import { formatData } from 'src/app/features/view-mode/utils';
 
@@ -16,18 +13,17 @@ export class ChartTypeEffects {
   constructor(
     private actions$: Actions,
     private chartTypeService: ChartTypesService,
-    private store: Store<AppState>,
     private mockService: MockService
   ) {}
 
   loadChartTypes$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(chartTypeActions.loadChartTypes),
+      ofType(ChartTypeActions.load),
       switchMap(() =>
         this.chartTypeService.getChartTypes$.pipe(
           switchMap((data) => {
             return [
-              chartTypeActions.loadChartTypesSuccess({
+              ChartTypeActions.loadSuccess({
                 chartTypes: data.documents,
                 chartTypesForViewMode: formatData(
                   [...data.documents],
@@ -36,9 +32,7 @@ export class ChartTypeEffects {
               }),
             ];
           }),
-          catchError((error) =>
-            of(chartTypeActions.loadChartTypesFailure({ error }))
-          )
+          catchError((error) => of(ChartTypeActions.loadFailure({ error })))
         )
       )
     )
@@ -46,7 +40,7 @@ export class ChartTypeEffects {
 
   createChartType$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(chartTypeActions.createChartType),
+      ofType(ChartTypeActions.create),
       switchMap((action) =>
         from(
           this.chartTypeService.createChartType({
@@ -56,11 +50,9 @@ export class ChartTypeEffects {
           })
         ).pipe(
           switchMap((chartType) => {
-            return [chartTypeActions.createChartTypeSuccess({ chartType })];
+            return [ChartTypeActions.createSuccess({ chartType })];
           }),
-          catchError((error) =>
-            of(chartTypeActions.createChartTypeError({ error }))
-          )
+          catchError((error) => of(ChartTypeActions.createError({ error })))
         )
       )
     )
@@ -68,15 +60,13 @@ export class ChartTypeEffects {
 
   deleteChartType$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(chartTypeActions.deleteChartType),
+      ofType(ChartTypeActions.delete),
       switchMap((action) =>
         from(this.chartTypeService.deleteChartType(action.$id)).pipe(
           switchMap((chartType) => {
-            return [chartTypeActions.deleteChartTypeSuccess({ chartType })];
+            return [ChartTypeActions.deleteSuccess({ chartType })];
           }),
-          catchError((error) =>
-            of(chartTypeActions.deleteChartTypeError({ error }))
-          )
+          catchError((error) => of(ChartTypeActions.deleteError({ error })))
         )
       )
     )
@@ -84,7 +74,7 @@ export class ChartTypeEffects {
 
   updateChartType$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(chartTypeActions.updateChartType),
+      ofType(ChartTypeActions.update),
       switchMap((action) =>
         from(
           this.chartTypeService.updateChartType({
@@ -93,11 +83,9 @@ export class ChartTypeEffects {
           })
         ).pipe(
           switchMap((chartType) => {
-            return [chartTypeActions.updateChartTypeSuccess({ chartType })];
+            return [ChartTypeActions.updateSuccess({ chartType })];
           }),
-          catchError((error) =>
-            of(chartTypeActions.updateChartTypeError({ error }))
-          )
+          catchError((error) => of(ChartTypeActions.updateError({ error })))
         )
       )
     )

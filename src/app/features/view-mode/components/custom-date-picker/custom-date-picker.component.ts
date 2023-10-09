@@ -7,11 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { Store } from '@ngrx/store';
 
-import {
-  filterViewModeData,
-  resetViewModeData,
-} from '../../../../shared/state/chart-types/chart-type.action';
 import { DatesDisplayComponent } from '../dates-display/dates-display.component';
+import { ChartTypeActions } from 'src/app/shared/state/chart-types/chart-type.action';
 
 @Component({
   selector: 'app-custom-date-picker',
@@ -40,7 +37,7 @@ export class CustomDatePickerComponent {
     this.isFiltering = true;
 
     this.store.dispatch(
-      filterViewModeData({
+      ChartTypeActions.filterViewModeData({
         range: {
           start: this.range.get('start')?.value,
           end: this.range.get('end')?.value,
@@ -52,7 +49,7 @@ export class CustomDatePickerComponent {
   resetDateRange() {
     this.isFiltering = false;
 
-    this.store.dispatch(resetViewModeData());
+    this.store.dispatch(ChartTypeActions.resetViewModeData());
     this.range.reset();
   }
 }

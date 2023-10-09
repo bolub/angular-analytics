@@ -17,10 +17,7 @@ import {
 } from 'src/app/shared/state/chart-types/chart-type.reducer';
 import { ChartType, ChartTypeFull } from '../../settings.model';
 import { CommonModule } from '@angular/common';
-import {
-  deleteChartType,
-  setCurrentChartType,
-} from 'src/app/shared/state/chart-types/chart-type.action';
+import { ChartTypeActions } from 'src/app/shared/state/chart-types/chart-type.action';
 
 describe('ChartTypeDisplay', () => {
   let component: ChartTypeDisplay;
@@ -89,7 +86,9 @@ describe('ChartTypeDisplay', () => {
 
   it('should dispatch deleteChartType action when onDelete is called', () => {
     const dispatchSpy = spyOn(store, 'dispatch');
-    const deleteChartTypeAction = deleteChartType({ $id: mockChartType.$id });
+    const deleteChartTypeAction = ChartTypeActions.delete({
+      $id: mockChartType.$id,
+    });
 
     component.onDelete();
 
@@ -98,7 +97,7 @@ describe('ChartTypeDisplay', () => {
 
   it('should dispatch setCurrentChartType action and open the dialog when openEditModal is called', () => {
     const dispatchSpy = spyOn(store, 'dispatch');
-    const setCurrentChartTypeAction = setCurrentChartType({
+    const setCurrentChartTypeAction = ChartTypeActions.setCurrentChartType({
       data: mockChartType,
     });
 

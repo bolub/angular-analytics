@@ -4,7 +4,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { createChartType } from 'src/app/shared/state/chart-types/chart-type.action';
+import { ChartTypeActions } from 'src/app/shared/state/chart-types/chart-type.action';
 import {
   selectActionType,
   selectChartTypeStatus,
@@ -67,7 +67,7 @@ export class NewChartDialogComponent implements OnInit, OnDestroy {
     const formValues = this.chartFormComponent.chartForm.value;
 
     this.store.dispatch(
-      createChartType({
+      ChartTypeActions.create({
         title: formValues.title,
         color: formValues.color,
         selectedType: formValues.selectedType,

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { loadChartTypes } from 'src/app/shared/state/chart-types/chart-type.action';
 import { Store } from '@ngrx/store';
 import {
   selectAllChartTypesForViewMode,
@@ -7,6 +6,7 @@ import {
 } from 'src/app/shared/state/chart-types/chart-type.selector';
 import { combineLatest } from 'rxjs';
 import { ViewMode } from './view-mode.model';
+import { ChartTypeActions } from 'src/app/shared/state/chart-types/chart-type.action';
 
 @Component({
   selector: 'app-view-mode',
@@ -21,7 +21,7 @@ export class ViewModeComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadChartTypes());
+    this.store.dispatch(ChartTypeActions.load());
   }
 
   trackByFn(index: number, item: ViewMode) {

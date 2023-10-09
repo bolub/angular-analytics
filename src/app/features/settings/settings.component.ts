@@ -4,11 +4,11 @@ import {
   selectAllChartTypes,
   selectChartTypesLoadingStatus,
 } from 'src/app/shared/state/chart-types/chart-type.selector';
-import { loadChartTypes } from 'src/app/shared/state/chart-types/chart-type.action';
 import { combineLatest } from 'rxjs';
 import { ChartTypeFull } from './settings.model';
 import { MatDialog } from '@angular/material/dialog';
 import { NewChartDialogComponent } from './components/chart-type-dialog/new-chart-dialog/new-chart-dialog.component';
+import { ChartTypeActions } from 'src/app/shared/state/chart-types/chart-type.action';
 
 @Component({
   selector: 'app-settings',
@@ -23,7 +23,7 @@ export class SettingsComponent implements OnInit {
   constructor(private store: Store, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadChartTypes());
+    this.store.dispatch(ChartTypeActions.load());
   }
 
   trackByFn(index: number, item: ChartTypeFull) {

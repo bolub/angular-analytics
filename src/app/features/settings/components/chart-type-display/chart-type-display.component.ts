@@ -1,11 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ChartTypeFull } from '../../settings.model';
 import { Store } from '@ngrx/store';
-import {
-  deleteChartType,
-  loadChartTypes,
-  setCurrentChartType,
-} from 'src/app/shared/state/chart-types/chart-type.action';
+import { ChartTypeActions } from 'src/app/shared/state/chart-types/chart-type.action';
 import {
   selectActionType,
   selectChartTypeStatus,
@@ -42,7 +38,7 @@ export class ChartTypeDisplay {
 
   onDelete() {
     this.store.dispatch(
-      deleteChartType({
+      ChartTypeActions.delete({
         $id: this.data.$id,
       })
     );
@@ -50,7 +46,7 @@ export class ChartTypeDisplay {
 
   openEditModal() {
     this.store.dispatch(
-      setCurrentChartType({
+      ChartTypeActions.setCurrentChartType({
         data: this.data,
       })
     );
@@ -68,7 +64,6 @@ export class ChartTypeDisplay {
       if (status === 'success' && actionType === 'delete') {
         this.dialog.closeAll();
         this._snackBar.open('Chart deleted successfully', 'close');
-        this.store.dispatch(loadChartTypes());
         window.location.reload();
       }
     });

@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 import { ChartTypeActions } from './chart-type.action';
 import { ChartTypeFull } from 'src/app/features/settings/settings.model';
 import {
@@ -16,10 +16,10 @@ export interface ChartTypeState {
   originalAllChartTypesForViewMode: ViewMode[];
   error: string;
   status: Status;
-  actionType?: ActionType;
+  actionType: ActionType | undefined;
   allChartTypesLoadingStatus: Status;
   filterRange: RangeType;
-  currentChartType?: ChartTypeFull;
+  currentChartType: ChartTypeFull | undefined;
 }
 
 export const initialChartTypesState: ChartTypeState = {
@@ -132,3 +132,8 @@ export const chartTypeReducer = createReducer(
     actionType: 'update' as ActionType,
   }))
 );
+
+export const chartTypesFeature = createFeature({
+  name: 'chartTypesFeature',
+  reducer: chartTypeReducer,
+});

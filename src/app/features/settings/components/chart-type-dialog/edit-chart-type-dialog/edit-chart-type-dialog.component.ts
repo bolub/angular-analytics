@@ -5,11 +5,9 @@ import { FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import {
-  selectActionType,
-  selectChartTypeStatus,
-  selectCurrentChartType,
-} from 'src/app/shared/state/chart-types/chart-type.selector';
-import { Status } from 'src/app/shared/state/chart-types/chart-type.reducer';
+  Status,
+  chartTypesFeature,
+} from 'src/app/shared/state/chart-types/chart-type.reducer';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Subscription, combineLatest } from 'rxjs';
 import { FormInputComponent } from '../form-input.component';
@@ -46,9 +44,11 @@ export class EditChartTypeDialogComponent implements AfterViewInit {
 
   ngOnInit(): void {
     this.dataSubscription$ = combineLatest({
-      status: this.store.select(selectChartTypeStatus),
-      actionType: this.store.select(selectActionType),
-      currentChartType: this.store.select(selectCurrentChartType),
+      status: this.store.select(chartTypesFeature.selectStatus),
+      actionType: this.store.select(chartTypesFeature.selectActionType),
+      currentChartType: this.store.select(
+        chartTypesFeature.selectCurrentChartType
+      ),
     }).subscribe((data) => {
       const { status, actionType, currentChartType } = data;
 

@@ -2,12 +2,11 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ChartTypeFull } from '../../settings.model';
 import { Store } from '@ngrx/store';
 import { ChartTypeActions } from 'src/app/shared/state/chart-types/chart-type.action';
-import {
-  selectActionType,
-  selectChartTypeStatus,
-} from 'src/app/shared/state/chart-types/chart-type.selector';
 import { Subscription, combineLatest } from 'rxjs';
-import { Status } from 'src/app/shared/state/chart-types/chart-type.reducer';
+import {
+  Status,
+  chartTypesFeature,
+} from 'src/app/shared/state/chart-types/chart-type.reducer';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -55,8 +54,8 @@ export class ChartTypeDisplay {
 
   ngOnInit(): void {
     this.dataSubscription$ = combineLatest({
-      status: this.store.select(selectChartTypeStatus),
-      actionType: this.store.select(selectActionType),
+      status: this.store.select(chartTypesFeature.selectStatus),
+      actionType: this.store.select(chartTypesFeature.selectActionType),
     }).subscribe((data) => {
       const { status, actionType } = data;
       this.status = status;

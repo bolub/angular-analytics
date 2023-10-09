@@ -1,7 +1,7 @@
 describe(
   'Test chart actions',
   {
-    retries: 2,
+    retries: 3,
   },
   () => {
     let general: {

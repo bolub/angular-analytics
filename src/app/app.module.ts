@@ -20,7 +20,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { ChartTypeEffects } from './shared/state/chart-types/chart-type.effects';
-import { chartTypeReducer } from './shared/state/chart-types/chart-type.reducer';
+import {
+  chartTypeReducer,
+  chartTypesFeature,
+} from './shared/state/chart-types/chart-type.reducer';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { EmptyComponent } from './shared/components/empty/empty.component';
 import { FormInputComponent } from './features/settings/components/chart-type-dialog/form-input.component';
@@ -62,6 +65,7 @@ import { SideNavItemsComponent } from './shared/components/side-nav-items/side-n
     StoreModule.forRoot({
       chartTypes: chartTypeReducer,
     }),
+    [StoreModule.forFeature(chartTypesFeature)],
     EffectsModule.forRoot([ChartTypeEffects]),
   ],
   providers: [],
